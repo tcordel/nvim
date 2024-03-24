@@ -7,7 +7,7 @@ vim.opt.number = true
 vim.opt.title = true
 vim.opt.backup = false
 vim.opt.showcmd = true
-vim.opt.wildignore:append({ "*/node_modules/*" })
+--vim.opt.wildignore:append({ "*/node_modules/*" })
 -- Add asterisks in block comments
 vim.opt.formatoptions:append({ "r" })
 
