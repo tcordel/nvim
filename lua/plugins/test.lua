@@ -1,5 +1,5 @@
 return {
-  { "vim-test/vim-test" },
+  --  { "vim-test/vim-test" },
   {
     "nvim-neotest/neotest",
     dependencies = {
@@ -43,6 +43,13 @@ return {
         end,
         desc = "Show/hide tests panel",
       },
+      {
+        "<leader>to",
+        function()
+          require("neotest").output.open()
+        end,
+        desc = "Show output",
+      },
     },
     config = function()
       require("neotest").setup({
@@ -55,12 +62,12 @@ return {
               return vim.fn.getcwd()
             end,
           }),
-          --          require("neotest-java")({
-          --            ignore_wrapper = true, -- whether to ignore maven/gradle wrapper
-          --          }),
-          require("neotest-vim-test")({
-            ignore_file_types = { "python", "vim", "lua" },
+          require("neotest-java")({
+            ignore_wrapper = true, -- whether to ignore maven/gradle wrapper
           }),
+          --          require("neotest-vim-test")({
+          --            ignore_file_types = { "javascript" },
+          --          }),
         },
       })
     end,

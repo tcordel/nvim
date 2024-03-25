@@ -43,6 +43,18 @@ return {
 
               local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
               -- vim.lsp.set_log_level('DEBUG')
+              local bundles = {
+                vim.fn.glob(
+                  "/home/tib/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-0.50.0.jar"
+                ),
+              }
+              vim.list_extend(
+                bundles,
+                vim.split(
+                  vim.fn.glob("/home/tib/.local/share/nvim/mason/packages/java-test/extension/server/*.jar"),
+                  "\n"
+                )
+              )
               local workspace_dir = "/home/tib/.workspace/" .. project_name -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
               local config = {
                 -- The command that starts the language server
@@ -140,8 +152,19 @@ return {
                     -- disable progress updates.
                   end,
                 },
+                init_options = {
+                  -- bundles = {},
+                  bundles = bundles,
+                },
               }
               require("jdtls").start_or_attach(config)
+              local keymap = vim.keymap.set
+              local opts = { silent = true }
+              keymap("n", "<leader>jt", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
+              keymap("n", "<leader>jT", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
+              -- local keymap = vim.keymap.set
+              -- keymap("n", "<leader>jt", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
+              -- keymap("n", "<leader>jT", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
             end,
           })
           return true
