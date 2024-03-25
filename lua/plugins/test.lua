@@ -1,5 +1,5 @@
 return {
-
+  { "vim-test/vim-test" },
   {
     "nvim-neotest/neotest",
     dependencies = {
@@ -9,6 +9,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-jest",
       "rcasia/neotest-java",
+      "nvim-neotest/neotest-vim-test",
     },
     requires = {
       "nvim-neotest/neotest-jest",
@@ -35,13 +36,6 @@ return {
         end,
         desc = "Run Test file",
       },
-      {
-        "<leader>tw",
-        function()
-          require("neotest").run.run(vim.fn.expand("%"))
-        end,
-        desc = "Run Test file",
-      },
     },
     config = function()
       require("neotest").setup({
@@ -54,8 +48,11 @@ return {
               return vim.fn.getcwd()
             end,
           }),
-          require("neotest-java")({
-            ignore_wrapper = true, -- whether to ignore maven/gradle wrapper
+          --          require("neotest-java")({
+          --            ignore_wrapper = true, -- whether to ignore maven/gradle wrapper
+          --          }),
+          require("neotest-vim-test")({
+            ignore_file_types = { "python", "vim", "lua" },
           }),
         },
       })
