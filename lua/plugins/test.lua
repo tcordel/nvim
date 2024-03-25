@@ -36,6 +36,13 @@ return {
         end,
         desc = "Run Test file",
       },
+      {
+        "<leader>ts",
+        function()
+          require("neotest").summary.toggle()
+        end,
+        desc = "Show/hide tests panel",
+      },
     },
     config = function()
       require("neotest").setup({
