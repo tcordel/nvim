@@ -2,6 +2,20 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = { "mfussenegger/nvim-jdtls" },
+    -- keys = {
+    -- {
+    --   "<leader>dr",
+    --   function()
+    -- 	require('dap').adapters.java = function(callback)
+    -- 	callback({
+    -- 		type = 'server';
+    -- 		host = '127.0.0.1';
+    -- 		port = 2000;
+    -- 	})
+    --   end,
+    --   desc = "Debug remote",
+    -- },
+    -- 	},
     opts = {
       setup = {
         jdtls = function(_, opts)
@@ -158,10 +172,10 @@ return {
                 },
               }
               require("jdtls").start_or_attach(config)
-              local keymap = vim.keymap.set
-              local opts = { silent = true }
-              keymap("n", "<leader>jt", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
-              keymap("n", "<leader>jT", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
+              --              local keymap = vim.keymap.set
+              --              local opts = { silent = true }
+              --              keymap("n", "<leader>jt", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
+              --              keymap("n", "<leader>jT", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
               -- local keymap = vim.keymap.set
               -- keymap("n", "<leader>jt", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
               -- keymap("n", "<leader>jT", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
