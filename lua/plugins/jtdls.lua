@@ -25,6 +25,12 @@ return {
               require("lazyvim.util").lsp.on_attach(function(_, buffer)
                 vim.keymap.set(
                   "n",
+                  "<leader>ch",
+                  "<Cmd>lua vim.lsp.buf.signature_help()<CR>",
+                  { buffer = buffer, desc = "Signatue Help" }
+                )
+                vim.keymap.set(
+                  "n",
                   "<leader>di",
                   "<Cmd>lua require'jdtls'.organize_imports()<CR>",
                   { buffer = buffer, desc = "Organize Imports" }
@@ -124,6 +130,8 @@ return {
                     eclipse = {
                       downloadSources = true,
                     },
+                    signatureHelp = { enabled = true },
+                    contentProvider = { preferred = "fernflower" },
                     configuration = {
                       updateBuildConfiguration = "interactive",
                       --             runtimes = {
