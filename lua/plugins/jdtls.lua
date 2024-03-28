@@ -24,17 +24,8 @@ return {
     opts = function(_, opts)
       opts.cmd = {
         vim.fn.exepath("jdtls"),
-        "--jvm-arg=-javaagent:/home/tib/.local/share/java/lombok.jar",
+        "--jvm-arg=-javaagent:" .. require("mason-registry").get_package("jdtls"):get_install_path() .. "/lombok.jar",
       }
-      --      opts.settings = {
-      --        java = {
-      --          format = {
-      --            settings = {
-      --              url = "/home/tib/.config/nvim/resources/eno_code_formatter_java.xml",
-      --            },
-      --          },
-      --        },
-      --      }
     end,
   },
 }
