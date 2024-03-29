@@ -19,7 +19,7 @@ return {
     {
       "<leader>gdc",
       "<Cmd>DiffviewClose<CR>",
-      desc = "diffview open",
+      desc = "diffview close",
     },
   },
 }
