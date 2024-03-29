@@ -6,11 +6,11 @@ return {
       "<Cmd>DiffviewFileHistory<CR>",
       desc = "Log",
     },
-    -- {
-    --   "<leader>gL",
-    --   "<Cmd>DiffviewFileHistory %<CR>",
-    --   desc = "Log File",
-    -- },
+    {
+      "<leader>gL",
+      "<Cmd>DiffviewFileHistory %<CR>",
+      desc = "Log File",
+    },
     {
       "<leader>gdo",
       "<Cmd>DiffviewOpen<CR>",
