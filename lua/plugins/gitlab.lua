@@ -10,35 +10,35 @@ return {
   enabled = true,
   keys = {
     {
-      "<leader>glr",
+      "<leader>ggr",
       function()
         require("gitlab").review()
       end,
       desc = "review",
     },
     {
-      "<leader>gls",
+      "<leader>ggs",
       function()
         require("gitlab").summary()
       end,
       desc = "summary",
     },
     {
-      "<leader>glc",
+      "<leader>ggc",
       function()
         require("gitlab").create_comment()
       end,
       desc = "create comment",
     },
     {
-      "<leader>glC",
+      "<leader>ggC",
       function()
         require("gitlab").create_multiline_comment()
       end,
       desc = "create multiline comment",
     },
     {
-      "<leader>gld",
+      "<leader>ggd",
       function()
         require("gitlab").toggle_discussions()
       end,
