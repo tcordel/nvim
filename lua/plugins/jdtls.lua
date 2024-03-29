@@ -20,6 +20,14 @@ return {
         ft = "java",
         desc = "Go to test",
       },
+      {
+        "<leader>cm",
+        function()
+          require("jdtls").update_project_config()
+        end,
+        ft = "java",
+        desc = "Updage maven config",
+      },
     },
 
     opts = function(_, opts)
