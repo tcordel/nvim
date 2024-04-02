@@ -8,7 +8,7 @@ return {
     config = function()
       require("refactoring").setup()
     end,
-    key = {
+    keys = {
       { "<leader>re", "<Cmd>:Refactor extract<CR>", desc = "extract" },
       { "<leader>rf", "<Cmd>:Refactor extract_to_file<CR>", desc = "extract_to_file" },
       { "<leader>rv", "<Cmd>Refactor extract_var<CR>", desc = "extract_var" },
