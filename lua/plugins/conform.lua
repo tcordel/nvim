@@ -1,9 +1,13 @@
 return {
-  "stevearc/conform.nvim",
-  opts = {
-    formatters_by_ft = {
-      javascript = { "prettier" },
-      typescript = { "prettier" },
+    "stevearc/conform.nvim",
+    opts = {
+        lang_to_formatters = {
+            json = { "jq" },
+        },
+        formatters_by_ft = {
+            markdown = { "prettier" },
+            javascript = { "prettier" },
+            typescript = { "prettier" },
+        },
     },
-  },
 }
