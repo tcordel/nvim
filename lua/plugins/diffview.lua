@@ -1,13 +1,18 @@
+local wk = require("which-key")
+wk.register({
+    ["<leader>gd"] = { name = "+diffview" },
+    ["<leader>gh"] = { name = "+hunks" },
+})
 return {
   "sindrets/diffview.nvim",
   keys = {
     {
-      "<leader>gl",
+      "<leader>gdl",
       "<Cmd>DiffviewFileHistory<CR>",
       desc = "Log",
     },
     {
-      "<leader>gL",
+      "<leader>gdL",
       "<Cmd>DiffviewFileHistory %<CR>",
       desc = "Log File",
     },
