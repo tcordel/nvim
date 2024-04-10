@@ -7,8 +7,6 @@ return {
             opts = function(_, opts)
                 opts.ensure_installed = opts.ensure_installed or {}
                 table.insert(opts.ensure_installed, "js-debug-adapter")
-                table.insert(opts.ensure_installed, "firefox-debug-adapter")
-                table.insert(opts.ensure_installed, "chrome-debug-adapter")
             end,
         },
     },
@@ -26,14 +24,14 @@ return {
                     return coroutine.create(function()
                         vim.ui.input({
                             prompt = "ProjectName: ",
-                            default = "eai",
+                            default = "eai-commun",
                         }, function(projectName)
-                                if projectName == nil or projectName == "" then
-                                    return
-                                else
-                                    coroutine.resume(co, projectName)
-                                end
-                            end)
+                            if projectName == nil or projectName == "" then
+                                return
+                            else
+                                coroutine.resume(co, projectName)
+                            end
+                        end)
                     end)
                 end,
                 port = function()
@@ -43,98 +41,50 @@ return {
                             prompt = "Enter Port: ",
                             default = "2000",
                         }, function(port)
-                                if port == nil or port == "" then
-                                    return
-                                else
-                                    coroutine.resume(co, port)
-                                end
-                            end)
+                            if port == nil or port == "" then
+                                return
+                            else
+                                coroutine.resume(co, port)
+                            end
+                        end)
                     end)
                 end,
-                --        port = "2000",
             },
         }
-        dap.adapters.chrome = {
-            type = "executable",
-            command = "node",
-            args = {
-                require("mason-registry").get_package("chrome-debug-adapter"):get_install_path() .. "/out/src/chromeDebug.ts",
-            }, -- TODO adjust
-        }
-        dap.adapters.firefox = {
-            type = "executable",
-            command = "node",
-            args = {
-                require("mason-registry").get_package("firefox-debug-adapter"):get_install_path() .. "/dist/adapter.bundle.js",
-            },
-        }
-
-        --    dap.configurations.typescript = {
-        --      {
-        --        name = "Debug with Firefox",
-        --        type = "firefox",
-        --        request = "launch",
-        --        reAttach = true,
-        --        url = "http://localhost:3000",
-        --        webRoot = "${workspaceFolder}",
-        --        firefoxExecutable = "/snap/bin/firefox",
-        --      },
-        --    }
-        dap.configurations.javascriptreact = { -- change this to javascript if needed
-            {
-
-                name = "Debug with Chrome",
-                type = "chrome",
-                request = "attach",
-                program = "${file}",
-                cwd = vim.fn.getcwd(),
-                sourceMaps = true,
-                protocol = "inspector",
-                port = 9222,
-                webRoot = "${workspaceFolder}",
-            },
-        }
-
-        dap.configurations.javascript= { -- change this to javascript if needed
-            {
-
-                name = "Debug with Chrome",
-                type = "chrome",
-                request = "attach",
-                program = "${file}",
-                cwd = vim.fn.getcwd(),
-                sourceMaps = true,
-                protocol = "inspector",
-                port = 9222,
-                webRoot = "${workspaceFolder}",
-            },
-        }
-        dap.configurations.typescriptreact = { -- change to typescript if needed
-            {
-                name = "Debug with Chrome",
-                type = "chrome",
-                request = "attach",
-                program = "${file}",
-                cwd = vim.fn.getcwd(),
-                sourceMaps = true,
-                protocol = "inspector",
-                port = 9222,
-                webRoot = "${workspaceFolder}",
-            },
-        }
-
-        dap.configurations.typescript = { -- change to typescript if needed
-            {
-                name = "Debug with Chrome",
-                type = "chrome",
-                request = "attach",
-                program = "${file}",
-                cwd = vim.fn.getcwd(),
-                sourceMaps = true,
-                protocol = "inspector",
-                port = 9222,
-                webRoot = "${workspaceFolder}",
-            },
-        }
+        if not dap.adapters["pwa-node"] then
+            require("dap").adapters["pwa-node"] = {
+                type = "server",
+                host = "localhost",
+                port = "${port}",
+                executable = {
+                    command = "node",
+                    args = {
+                        require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+                        .. "/js-debug/src/dapDebugServer.js",
+                        "${port}",
+                    },
+                },
+            }
+        end
+        for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+            if not dap.configurations[language] then
+                dap.configurations[language] = {
+                    {
+                        type = "pwa-node",
+                        request = "launch",
+                        name = "Launch file",
+                        program = "${file}",
+                        cwd = "${workspaceFolder}",
+                    },
+                    {
+                        type = "pwa-node",
+                        request = "attach",
+                        name = "Attach",
+                        processId = require("dap.utils").pick_process,
+                        cwd = "${workspaceFolder}",
+                    },
+                }
+            end
+        end
     end,
 }
