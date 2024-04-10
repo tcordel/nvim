@@ -1,18 +1,31 @@
+local wk = require("which-key")
+wk.register({
+    ["<leader>h"] = { name = "+harpoon" },
+})
 return {
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
+        config = function()
+            local harpoon = require("harpoon")
+            harpoon:setup({
+            settings = {
+                save_on_toggle = true,
+                sync_on_ui_close = true,
+            },
+        })
+        end,
         keys = function()
             local keys = {
                 {
-                    "<leader>H",
+                    "<leader>ha",
                     function()
                         require("harpoon"):list():append()
                     end,
                     desc = "Harpoon File",
                 },
                 {
-                    "<leader>h",
+                    "<leader>hm",
                     function()
                         local harpoon = require("harpoon")
                         harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -23,7 +36,7 @@ return {
 
             for i = 1, 5 do
                 table.insert(keys, {
-                    "<leader>" .. i,
+                    "<leader>h" .. i,
                     function()
                         require("harpoon"):list():select(i)
                     end,
