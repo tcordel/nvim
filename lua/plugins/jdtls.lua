@@ -27,6 +27,14 @@ return {
 				ft = "java",
 				desc = "Updage maven config",
 			},
+			{
+				"<leader>cf",
+				function()
+					vim.lsp.buf.format()
+				end,
+				ft = "java",
+				desc = "Format LSP",
+			}
 		},
 
 		opts = function(_, opts)
@@ -53,19 +61,42 @@ return {
 			end
 			opts.cmd = {
 				vim.fn.exepath("jdtls"),
-				"--jvm-arg=-javaagent:" ..
-				require("mason-registry").get_package("jdtls"):get_install_path() .. "/lombok.jar",
+				"--jvm-arg=-javaagent:" .. require("mason-registry").get_package("jdtls"):get_install_path() .. "/lombok.jar",
 			}
 			opts.jdtls = {
 				settings = {
 					java = {
+				            eclipse = {
+				              downloadSources = true,
+				            },
+				            maven = {
+				              downloadSources = true,
+				            },
+				            implementationsCodeLens = {
+				              enabled = true,
+				            },
+				            referencesCodeLens = {
+				              enabled = true,
+				            },
+				            references = {
+				              includeDecompiledSources = true,
+				            },
 						format = {
+							enabled = true,
 							settings = {
 								url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatte_java.xml",
 								profile = "eno_code_formatter_java",
 							},
 						},
 					},
+				},
+				handlers = {
+					["language/status"] = function(_, result)
+						-- print(result)
+					end,
+					["$/progress"] = function(_, result, ctx)
+						-- disable progress updates.
+					end,
 				},
 			}
 			return opts
