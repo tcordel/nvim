@@ -26,5 +26,6 @@ return {
       "<Cmd>DiffviewClose<CR>",
       desc = "diffview close",
     },
+		{ "<leader>ghB", function() require("gitsigns").blame() end,  desc = "Blame File" },
   },
 }

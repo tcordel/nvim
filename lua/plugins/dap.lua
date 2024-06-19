@@ -23,21 +23,21 @@ return {
                 request = "attach",
                 hostName = "127.0.0.1",
 
-                projectName = function()
-                    local co = coroutine.running()
-                    return coroutine.create(function()
-                        vim.ui.input({
-                            prompt = "ProjectName: ",
-                            default = "eai-commun",
-                        }, function(projectName)
-                            if projectName == nil or projectName == "" then
-                                return
-                            else
-                                coroutine.resume(co, projectName)
-                            end
-                        end)
-                    end)
-                end,
+                -- projectName = function()
+                --     local co = coroutine.running()
+                --     return coroutine.create(function()
+                --         vim.ui.input({
+                --             prompt = "ProjectName: ",
+                --             default = "eai-commun",
+                --         }, function(projectName)
+                --             if projectName == nil or projectName == "" then
+                --                 return
+                --             else
+                --                 coroutine.resume(co, projectName)
+                --             end
+                --         end)
+                --     end)
+                -- end,
                 port = function()
                     local co = coroutine.running()
                     return coroutine.create(function()
