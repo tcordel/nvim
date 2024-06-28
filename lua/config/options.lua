@@ -4,6 +4,7 @@
 --
 vim.opt.mouse = ""
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.title = true
 vim.opt.backup = false
 vim.opt.showcmd = true
