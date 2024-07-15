@@ -1,8 +1,5 @@
 local wk = require("which-key")
-
-wk.register({
-    ["<leader>gg"] = { name = "+gitlab" },
-})
+wk.add({ "<leader>gg", group = "gitlab" })
 return {
   "harrisoncramer/gitlab.nvim",
   dependencies = {

@@ -1,8 +1,5 @@
 local wk = require("which-key")
-wk.register({
-    ["<leader>gd"] = { name = "+diffview" },
-    ["<leader>gh"] = { name = "+hunks" },
-})
+wk.add({ "<leader>gd", group = "diffview" }, { "<leader>gh", group = "hunks" })
 return {
   "sindrets/diffview.nvim",
   keys = {
@@ -26,6 +23,12 @@ return {
       "<Cmd>DiffviewClose<CR>",
       desc = "diffview close",
     },
-		{ "<leader>ghB", function() require("gitsigns").blame() end,  desc = "Blame File" },
+    {
+      "<leader>ghB",
+      function()
+        require("gitsigns").blame()
+      end,
+      desc = "Blame File",
+    },
   },
 }
