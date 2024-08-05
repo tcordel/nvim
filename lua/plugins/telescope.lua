@@ -10,11 +10,14 @@ return {
       desc = "lsp_incoming_calls",
     },
     {
-      "<leader>sf",
+      "<leader>fs",
       function()
-        require("telescope.builtin").find_files()
+        require("telescope.builtin").lsp_dynamic_workspace_symbols({
+          query = "",
+          sorting_strategy = "ascending",
+        })
       end,
-      desc = "Search file",
+      desc = "Search symbol",
     },
   },
 }

@@ -12,7 +12,7 @@ return {
 			markdown = { "prettier" },
 			javascript = { "prettier" },
 			typescript = { "prettier" },
-			xml = { "xmlfomat" },
+			xml = { "xmlfomatter" },
 		},
 	},
 	init = function()
