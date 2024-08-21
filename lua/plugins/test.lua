@@ -28,7 +28,7 @@ return {
             require("neotest").setup({
                 adapters = {
                     require("neotest-jest")({
-                        jestCommand = "yarn test --",
+                        jestCommand = "yarn test ",
                         jestConfigFile = "custom.jest.config.ts",
                         env = { CI = true },
                         cwd = function(path)
