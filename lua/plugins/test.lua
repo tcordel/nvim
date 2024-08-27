@@ -28,12 +28,14 @@ return {
             require("neotest").setup({
                 adapters = {
                     require("neotest-jest")({
-                        jestCommand = "yarn test ",
-                        jestConfigFile = "custom.jest.config.ts",
+                        jestCommand = "yarn test --",
                         env = { CI = true },
                         cwd = function(path)
                             return vim.fn.getcwd()
                         end,
+						discovery = {
+							enabled = false,
+						}
                     }),
                 },
             })
