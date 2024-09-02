@@ -20,6 +20,7 @@ return {
       -- make sure mason installs the server
       servers = {
         jdtls = {},
+        vtsls = {},
       },
       setup = {
         jdtls = function()
@@ -27,10 +28,8 @@ return {
             server = {
               cmd = {
                 "sonarlint-language-server",
-                -- Ensure that sonarlint-language-server uses stdio channel
                 "-stdio",
                 "-analyzers",
-                -- paths to the analyzers you need, using those for python and java in this example
                 vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
                 vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
                 vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
@@ -44,6 +43,28 @@ return {
             },
           })
           return true -- avoid duplicate servers
+        end,
+        vtsls = function()
+          require("sonarlint").setup({
+            server = {
+              cmd = {
+                "sonarlint-language-server",
+                "-stdio",
+                "-analyzers",
+                vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
+                vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+                vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
+              },
+            },
+            filetypes = {
+              "javascript",
+              "javascriptreact",
+              "javascript.jsx",
+              "typescript",
+              "typescriptreact",
+              "typescript.tsx",
+            },
+          })
         end,
       },
     },
