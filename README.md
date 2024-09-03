@@ -1,4 +1,7 @@
-# 💤 LazyVim
+# Full React and Java IDE based on [LazyVim](https://www.lazyvim.org/)
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+## Prerequesites
+
+* Python3 dev environment
+* Go dev environment (gitlab integration)
+* [tidy](https://www.html-tidy.org/) (xml formatting)
