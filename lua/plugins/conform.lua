@@ -20,6 +20,8 @@ return {
           "true",
           "--indent",
           "yes",
+          "--indent-attributes",
+          "1",
           "--indent-spaces",
           "4",
           "--vertical-space",
