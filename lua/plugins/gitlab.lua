@@ -51,6 +51,10 @@ return {
     require("gitlab.server").build(true)
   end, -- builds the go binary
   config = function()
-    require("gitlab").setup({})
+    require("gitlab").setup({
+      connection_settings = {
+        insecure = true, -- Like curl's --insecure option, ignore bad x509 certificates on connection
+      },
+    })
   end,
 }
