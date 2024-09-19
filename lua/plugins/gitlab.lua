@@ -37,6 +37,7 @@ return {
       function()
         require("gitlab").create_multiline_comment()
       end,
+      mode = { "v" },
       desc = "create multiline comment",
     },
     {
@@ -52,6 +53,11 @@ return {
   end, -- builds the go binary
   config = function()
     require("gitlab").setup({
+      reviewer_settings = {
+        diffview = {
+          imply_local = true, -- If true, will attempt to use --imply_local option when calling |:DiffviewOpen|
+        },
+      },
       connection_settings = {
         insecure = true, -- Like curl's --insecure option, ignore bad x509 certificates on connection
       },
