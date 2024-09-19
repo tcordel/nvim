@@ -30,6 +30,20 @@ return {
 			end,
 			desc = "Blame File",
 		},
+		{
+			"<leader>ghr",
+			function()
+				require("gitsigns").reset_hunk()
+			end,
+			desc = "reset hunk",
+		},
+		{
+			"<leader>ghR",
+			function()
+				require("gitsigns").reset_buffer()
+			end,
+			desc = "reset buffer",
+		},
 	},
 	opts = {
 
@@ -47,6 +61,8 @@ return {
 			default = {
 				-- Config for changed files, and staged files in diff views.
 				layout = "diff2_horizontal",
+				disable_diagnostics = true,
+				winbar_info = true, -- See |diffview-config-view.x.winbar_info|
 			},
 			merge_tool = {
 				-- Config for conflicted files in diff views during a merge or rebase.
