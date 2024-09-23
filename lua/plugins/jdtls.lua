@@ -83,6 +83,10 @@ return {
             },
             completion = {
               favoriteStaticMembers = {
+                "java.util.*",
+                "java.util.Collections.*",
+                "java.util.List.*",
+                "java.util.Map.*",
                 "org.assertj.core.api.Assertions.*",
                 "java.util.Objects.requireNonNull",
                 "java.util.Objects.requireNonNullElse",
