@@ -27,14 +27,6 @@ return {
         ft = "java",
         desc = "Updage maven config",
       },
-      {
-        "<leader>cf",
-        function()
-          vim.lsp.buf.format()
-        end,
-        ft = "java",
-        desc = "Format LSP",
-      },
     },
 
     opts = function(_, opts)
@@ -98,7 +90,7 @@ return {
             format = {
               enabled = true,
               settings = {
-                url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatte_java.xml",
+                url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
                 profile = "eno_code_formatter_java",
               },
             },
@@ -108,9 +100,9 @@ return {
           ["language/status"] = function(_, result)
             -- print(result)
           end,
-          ["$/progress"] = function(_, result, ctx)
-            -- disable progress updates.
-          end,
+          -- ["$/progress"] = function(_, result, ctx)
+          --   -- disable progress updates.
+          -- end,
         },
       }
       return opts
