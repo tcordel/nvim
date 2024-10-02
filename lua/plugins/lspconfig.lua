@@ -2,6 +2,7 @@ vim.diagnostic.config({ update_in_insert = false })
 return {
 	{
 		"neovim/nvim-lspconfig",
+		event = { 'BufReadPre', 'BufNewFile' },
 		dependencies = {
 			{
 				"schrieveslaach/sonarlint",
