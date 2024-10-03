@@ -27,47 +27,41 @@ return {
 			},
 			setup = {
 				jdtls = function()
-					-- require("sonarlint").setup({
-					--   server = {
-					--     cmd = {
-					--       "sonarlint-language-server",
-					--       "-stdio",
-					--       "-analyzers",
-					--       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
-					--       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
-					--       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
-					--     },
-					--   },
-					--   filetypes = {
-					--     -- Tested and working
-					--     "python",
-					--     "cpp",
-					--     "java",
-					--   },
-					-- })
+					require("sonarlint").setup({
+					  server = {
+					    cmd = {
+					      "sonarlint-language-server",
+					      "-stdio",
+					      "-analyzers",
+					      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+					    },
+					  },
+					  filetypes = {
+					    -- Tested and working
+					    "java",
+					  },
+					})
 					return true -- avoid duplicate servers
 				end,
 				vtsls = function()
-					-- require("sonarlint").setup({
-					--   server = {
-					--     cmd = {
-					--       "sonarlint-language-server",
-					--       "-stdio",
-					--       "-analyzers",
-					--       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
-					--       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
-					--       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
-					--     },
-					--   },
-					--   filetypes = {
-					--     "javascript",
-					--     "javascriptreact",
-					--     "javascript.jsx",
-					--     "typescript",
-					--     "typescriptreact",
-					--     "typescript.tsx",
-					--   },
-					-- })
+					require("sonarlint").setup({
+					  server = {
+					    cmd = {
+					      "sonarlint-language-server",
+					      "-stdio",
+					      "-analyzers",
+					      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
+					    },
+					  },
+					  filetypes = {
+					    "javascript",
+					    "javascriptreact",
+					    "javascript.jsx",
+					    "typescript",
+					    "typescriptreact",
+					    "typescript.tsx",
+					  },
+					})
 				end,
 			},
 		},

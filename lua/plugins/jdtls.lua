@@ -81,6 +81,7 @@ return {
 								"java.util.Collections.*",
 								"java.util.List.*",
 								"java.util.Map.*",
+								"java.util.stream.*",
 								"java.lang.*",
 								"org.assertj.core.api.Assertions.*",
 								"java.util.Objects.requireNonNull",
@@ -118,9 +119,9 @@ return {
 					["language/status"] = function(_, result)
 						-- print(result)
 					end,
-					-- ["$/progress"] = function(_, result, ctx)
+					["$/progress"] = function(_, result, ctx)
 					--   -- disable progress updates.
-					-- end,
+					end,
 				},
 			}
 			return opts
