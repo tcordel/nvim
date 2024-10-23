@@ -38,13 +38,6 @@ return {
 				desc = "Run File",
 			},
 			{
-				"<leader>tT",
-				function()
-					require("neotest").run.run(vim.uv.cwd())
-				end,
-				desc = "Run All Test Files",
-			},
-			{
 				"<leader>td",
 				function()
 					require("neotest").run.run({ strategy = "dap" })
