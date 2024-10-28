@@ -2,7 +2,7 @@ vim.diagnostic.config({ update_in_insert = false })
 return {
 	{
 		"neovim/nvim-lspconfig",
-		event = { 'BufReadPre', 'BufNewFile' },
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{
 				"schrieveslaach/sonarlint",
@@ -28,39 +28,46 @@ return {
 			setup = {
 				jdtls = function()
 					require("sonarlint").setup({
-					  server = {
-					    cmd = {
-					      "sonarlint-language-server",
-					      "-stdio",
-					      "-analyzers",
-					      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
-					    },
-					  },
-					  filetypes = {
-					    -- Tested and working
-					    "java",
-					  },
+						server = {
+							cmd = {
+								"sonarlint-language-server",
+								"-stdio",
+								"-analyzers",
+								vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+							},
+						},
+						filetypes = {
+							-- Tested and working
+							"java",
+						},
 					})
+					require("spring_boot").setup({
+						-- ls_path = os.getenv("HOME") .. "/.vscode/extensions/vmware.vscode-spring-boot-1.58.0/language-server",
+						-- jdtls_name = "jdtls",
+						java_cmd = "java",
+						log_file = os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
+					})
+					require("spring_boot").init_lsp_commands()
 					return true -- avoid duplicate servers
 				end,
 				vtsls = function()
 					require("sonarlint").setup({
-					  server = {
-					    cmd = {
-					      "sonarlint-language-server",
-					      "-stdio",
-					      "-analyzers",
-					      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
-					    },
-					  },
-					  filetypes = {
-					    "javascript",
-					    "javascriptreact",
-					    "javascript.jsx",
-					    "typescript",
-					    "typescriptreact",
-					    "typescript.tsx",
-					  },
+						server = {
+							cmd = {
+								"sonarlint-language-server",
+								"-stdio",
+								"-analyzers",
+								vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
+							},
+						},
+						filetypes = {
+							"javascript",
+							"javascriptreact",
+							"javascript.jsx",
+							"typescript",
+							"typescriptreact",
+							"typescript.tsx",
+						},
 					})
 				end,
 			},

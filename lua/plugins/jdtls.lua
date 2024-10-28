@@ -1,7 +1,10 @@
 return {
 	{
 		"mfussenegger/nvim-jdtls",
-		dependencies = { "folke/which-key.nvim" },
+		dependencies = {
+			-- "schrieveslaach/sonarlint",
+			"folke/which-key.nvim",
+		},
 		keys = {
 			{
 				"<leader>ct",
@@ -57,73 +60,77 @@ return {
 					.. require("mason-registry").get_package("jdtls"):get_install_path()
 					.. "/lombok.jar",
 			}
-			opts.jdtls = {
-				settings = {
-					java = {
-						eclipse = {
-							downloadSources = true,
+			opts.settings = {
+				java = {
+					eclipse = {
+						downloadSources = true,
+					},
+					maven = {
+						downloadSources = true,
+					},
+					implementationsCodeLens = {
+						enabled = true,
+					},
+					referencesCodeLens = {
+						enabled = true,
+					},
+					references = {
+						includeDecompiledSources = true,
+					},
+					completion = {
+						favoriteStaticMembers = {
+							"java.util.*",
+							"java.util.Collections.*",
+							"java.util.List.*",
+							"java.util.Map.*",
+							"java.util.stream.*",
+							"java.lang.*",
+							"org.assertj.core.api.Assertions.*",
+							"java.util.Objects.requireNonNull",
+							"java.util.Objects.requireNonNullElse",
+							"org.mockito.Mockito.*",
+							"org.mockito.ArgumentMatchers.*",
+							"org.mockito.Answers.RETURNS_DEEP_STUBS",
 						},
-						maven = {
-							downloadSources = true,
+						filteredTypes = {
+							"com.sun.*",
+							"io.micrometer.shaded.*",
+							"java.awt.*",
+							"jdk.*",
+							"sun.*",
 						},
-						implementationsCodeLens = {
-							enabled = true,
+						importOrder = {
+							"fr",
+							"org",
+							"com",
+							"jakarta",
+							"java",
+							"javax",
 						},
-						referencesCodeLens = {
-							enabled = true,
-						},
-						references = {
-							includeDecompiledSources = true,
-						},
-						completion = {
-							favoriteStaticMembers = {
-								"java.util.*",
-								"java.util.Collections.*",
-								"java.util.List.*",
-								"java.util.Map.*",
-								"java.util.stream.*",
-								"java.lang.*",
-								"org.assertj.core.api.Assertions.*",
-								"java.util.Objects.requireNonNull",
-								"java.util.Objects.requireNonNullElse",
-								"org.mockito.Mockito.*",
-								"org.mockito.ArgumentMatchers.*",
-								"org.mockito.Answers.RETURNS_DEEP_STUBS",
-							},
-							filteredTypes = {
-								"com.sun.*",
-								"io.micrometer.shaded.*",
-								"java.awt.*",
-								"jdk.*",
-								"sun.*",
-							},
-							importOrder = {
-								"fr",
-								"org",
-								"com",
-								"jakarta",
-								"java",
-								"javax",
-							},
-						},
-						format = {
-							enabled = true,
-							settings = {
-								url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
-								profile = "eno_code_formatter_java",
-							},
+					},
+					format = {
+						enabled = true,
+						settings = {
+							url = vim.api.nvim_list_runtime_paths()[1] .. "/resources/eno_code_formatter_java.xml",
+							profile = "eno_code_formatter_java",
 						},
 					},
 				},
-				handlers = {
+			}
+
+			opts.jdtls = function(config)
+				config.handlers = {
 					["language/status"] = function(_, result)
 						-- print(result)
 					end,
 					["$/progress"] = function(_, result, ctx)
-					--   -- disable progress updates.
+						--   -- disable progress updates.
 					end,
-				},
-			}
+				}
+
+				vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
+				return config
+			end
 			return opts
 		end,
 	},
