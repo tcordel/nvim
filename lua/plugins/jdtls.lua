@@ -2,7 +2,6 @@ return {
 	{
 		"mfussenegger/nvim-jdtls",
 		dependencies = {
-			-- "schrieveslaach/sonarlint",
 			"folke/which-key.nvim",
 		},
 		keys = {
@@ -57,8 +56,8 @@ return {
 			opts.cmd = {
 				vim.fn.exepath("jdtls"),
 				"--jvm-arg=-javaagent:"
-					.. require("mason-registry").get_package("jdtls"):get_install_path()
-					.. "/lombok.jar",
+				.. require("mason-registry").get_package("jdtls"):get_install_path()
+				.. "/lombok.jar",
 			}
 			opts.settings = {
 				java = {
@@ -111,7 +110,7 @@ return {
 					format = {
 						enabled = true,
 						settings = {
-							url = vim.api.nvim_list_runtime_paths()[1] .. "/resources/eno_code_formatter_java.xml",
+							url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
 							profile = "eno_code_formatter_java",
 						},
 					},

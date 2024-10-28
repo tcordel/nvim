@@ -5,6 +5,9 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{
+				"JavaHello/spring-boot.nvim",
+			},
+			{
 				"schrieveslaach/sonarlint",
 				url = "https://gitlab.com/schrieveslaach/sonarlint.nvim",
 				dependencies = {
@@ -41,9 +44,8 @@ return {
 							"java",
 						},
 					})
+
 					require("spring_boot").setup({
-						-- ls_path = os.getenv("HOME") .. "/.vscode/extensions/vmware.vscode-spring-boot-1.58.0/language-server",
-						-- jdtls_name = "jdtls",
 						java_cmd = "java",
 						log_file = os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
 					})
