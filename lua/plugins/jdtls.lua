@@ -3,6 +3,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		dependencies = {
 			"folke/which-key.nvim",
+			"JavaHello/spring-boot.nvim",
 		},
 		keys = {
 			{
@@ -56,8 +57,8 @@ return {
 			opts.cmd = {
 				vim.fn.exepath("jdtls"),
 				"--jvm-arg=-javaagent:"
-				.. require("mason-registry").get_package("jdtls"):get_install_path()
-				.. "/lombok.jar",
+					.. require("mason-registry").get_package("jdtls"):get_install_path()
+					.. "/lombok.jar",
 			}
 			opts.settings = {
 				java = {
@@ -127,6 +128,25 @@ return {
 					end,
 				}
 
+				require("spring_boot").setup({
+					java_cmd = "java",
+					log_file = os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
+				})
+				require("spring_boot").init_lsp_commands()
+				require("sonarlint").setup({
+					server = {
+						cmd = {
+							"sonarlint-language-server",
+							"-stdio",
+							"-analyzers",
+							vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+						},
+					},
+					filetypes = {
+						-- Tested and working
+						"java",
+					},
+				})
 				vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
 				return config
 			end
