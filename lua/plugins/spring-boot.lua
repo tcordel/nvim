@@ -1,3 +1,4 @@
+-- sudo -E nvim /usr/share/nvim/runtime/lua/vim/lsp/inlay_hint.lua +:355
 return {
 	"JavaHello/spring-boot.nvim",
 	dependencies = {
@@ -11,11 +12,11 @@ return {
 		},
 	},
 	ft = "java",
-	-- config = function()
-	-- 	require("spring_boot").setup({
-	-- 		java_cmd = "java",
-	-- 		log_file = os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
-	-- 	})
-	-- 	require("spring_boot").init_lsp_commands()
-	-- end,
+	config = function()
+		require("spring_boot").setup({
+			java_cmd = "java",
+			log_file = os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
+		})
+		require("spring_boot").init_lsp_commands()
+	end,
 }
