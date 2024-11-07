@@ -1,8 +1,7 @@
 return {
 	"JavaHello/spring-boot.nvim",
 	dependencies = {
-		-- "mfussenegger/nvim-jdtls", -- or nvim-java, nvim-lspconfig
-
+		"mfussenegger/nvim-jdtls",
 		{
 			"williamboman/mason.nvim",
 			opts = function(_, opts)
@@ -11,6 +10,7 @@ return {
 			end,
 		},
 	},
+	ft = "java",
 	-- config = function()
 	-- 	require("spring_boot").setup({
 	-- 		java_cmd = "java",

@@ -1,8 +1,11 @@
 -- local filetypes = {
--- 	-- Tested and working
--- 	'python',
--- 	'cpp',
--- 	'java',
+-- 	"javascript",
+-- 	"javascriptreact",
+-- 	"javascript.jsx",
+-- 	"typescript",
+-- 	"typescriptreact",
+-- 	"typescript.tsx",
+-- 	"java",
 -- }
 return {
 	{
@@ -20,22 +23,18 @@ return {
 			-- 	"neovim/nvim-lspconfig"
 			-- }
 		},
+		-- ft = filetypes,
 		-- opts = {
 		-- 	server = {
 		-- 		cmd = {
-		-- 			'sonarlint-language-server',
-		-- 			-- Ensure that sonarlint-language-server uses stdio channel
-		-- 			'-stdio',
-		-- 			'-analyzers',
-		-- 			-- paths to the analyzers you need, using those for python and java in this example
-		-- 			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
-		-- 			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+		-- 			"sonarlint-language-server",
+		-- 			"-stdio",
+		-- 			"-analyzers",
+		-- 			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
 		-- 			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
-		-- 		}
+		-- 		},
 		-- 	},
-		-- 	filetypes = filetypes
+		-- 	filetypes = filetypes,
 		-- },
-		-- ft = filetypes
 	},
-
 }

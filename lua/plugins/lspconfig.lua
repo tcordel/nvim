@@ -22,31 +22,31 @@ return {
 			--
 			-- make sure mason installs the server
 			servers = {
-				jdtls = {},
+				jdtls = { enabled = false },
 				vtsls = {},
 			},
 			setup = {
 				jdtls = function()
-					-- require("sonarlint").setup({
-					-- 	server = {
-					-- 		cmd = {
-					-- 			"sonarlint-language-server",
-					-- 			"-stdio",
-					-- 			"-analyzers",
-					-- 			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
-					-- 		},
-					-- 	},
-					-- 	filetypes = {
-					-- 		-- Tested and working
-					-- 		"java",
-					-- 	},
-					-- })
-
-					-- require("spring_boot").setup({
-					-- 	java_cmd = "java",
-					-- 	log_file = os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
-					-- })
-					-- require("spring_boot").init_lsp_commands()
+					require("sonarlint").setup({
+						server = {
+							cmd = {
+								"sonarlint-language-server",
+								"-stdio",
+								"-analyzers",
+								vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
+								vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+							},
+						},
+						filetypes = {
+							"javascript",
+							"javascriptreact",
+							"javascript.jsx",
+							"typescript",
+							"typescriptreact",
+							"typescript.tsx",
+							"java",
+						},
+					})
 					return true -- avoid duplicate servers
 				end,
 				vtsls = function()
@@ -56,6 +56,7 @@ return {
 								"sonarlint-language-server",
 								"-stdio",
 								"-analyzers",
+								vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
 								vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
 							},
 						},
@@ -66,6 +67,7 @@ return {
 							"typescript",
 							"typescriptreact",
 							"typescript.tsx",
+							"java",
 						},
 					})
 				end,
