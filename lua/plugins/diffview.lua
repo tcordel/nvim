@@ -61,7 +61,7 @@ return {
 			default = {
 				-- Config for changed files, and staged files in diff views.
 				layout = "diff2_horizontal",
-				disable_diagnostics = true,
+				-- disable_diagnostics = true,
 				winbar_info = true, -- See |diffview-config-view.x.winbar_info|
 			},
 			merge_tool = {
