@@ -57,17 +57,19 @@ return {
 			opts.cmd = {
 				vim.fn.exepath("jdtls"),
 				"--jvm-arg=-javaagent:"
-				.. require("mason-registry").get_package("jdtls"):get_install_path()
-				.. "/lombok.jar",
-				'-Declipse.application=org.eclipse.jdt.ls.core.id1',
-				'-Dosgi.bundles.defaultStartLevel=4',
-				'-Declipse.product=org.eclipse.jdt.ls.core.product',
+					.. require("mason-registry").get_package("jdtls"):get_install_path()
+					.. "/lombok.jar",
+				"-Declipse.application=org.eclipse.jdt.ls.core.id1",
+				"-Dosgi.bundles.defaultStartLevel=4",
+				"-Declipse.product=org.eclipse.jdt.ls.core.product",
 				-- '-Dlog.protocol=true',
 				-- '-Dlog.level=ALL',
-				'-Xmx6g',
-				'--add-modules=ALL-SYSTEM',
-				'--add-opens', 'java.base/java.util=ALL-UNNAMED',
-				'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+				-- '-Xmx6g',
+				"--add-modules=ALL-SYSTEM",
+				"--add-opens",
+				"java.base/java.util=ALL-UNNAMED",
+				"--add-opens",
+				"java.base/java.lang=ALL-UNNAMED",
 			}
 			opts.settings = {
 				java = {
@@ -129,11 +131,11 @@ return {
 
 			opts.jdtls = function(config)
 				config.handlers = {
-					["language/status"] = function(_, result)
-						-- print(result)
-					end,
+					-- ["language/status"] = function(_, result)
+					-- 	-- print(result)
+					-- end,
 					-- ["$/progress"] = function(_, result, ctx)
-						--   -- disable progress updates.
+						-- disable progress updates.
 					-- end,
 				}
 				-- require("spring_boot").setup({
@@ -141,7 +143,7 @@ return {
 				-- 	log_file = os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
 				-- })
 				-- require("spring_boot").init_lsp_commands()
-				vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
+				-- vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
 				return config
 			end
 			return opts
