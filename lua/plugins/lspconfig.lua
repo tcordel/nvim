@@ -24,7 +24,8 @@ return {
 			servers = {
 				jdtls = { enabled = false },
 				vtsls = {},
-				powershell_es = {}
+				powershell_es = {},
+				bashls = {},
 			},
 			setup = {
 				jdtls = function()
