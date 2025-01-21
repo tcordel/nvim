@@ -32,6 +32,7 @@ return {
 			},
 		},
 
+		ft = { "java" },
 		opts = function(_, opts)
 			-- opts.root_dir = function(bufname)
 			--   local path = require("jdtls.path")
@@ -135,7 +136,7 @@ return {
 					-- 	-- print(result)
 					-- end,
 					-- ["$/progress"] = function(_, result, ctx)
-						-- disable progress updates.
+					-- disable progress updates.
 					-- end,
 				}
 				-- require("spring_boot").setup({

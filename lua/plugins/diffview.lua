@@ -24,6 +24,13 @@ return {
 			desc = "diffview close",
 		},
 		{
+			"<leader>ghb",
+			function()
+				require("gitsigns").blame_line()
+			end,
+			desc = "Blame File",
+		},
+		{
 			"<leader>ghB",
 			function()
 				require("gitsigns").blame()
