@@ -21,3 +21,5 @@ vim.o.expandtab = false -- Pressing the TAB key will insert spaces instead of a 
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
 vim.g.snacks_animate = false
+vim.opt.spelllang={"en_gb","fr"}
+vim.opt.spell = false

@@ -3,7 +3,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		dependencies = {
 			"folke/which-key.nvim",
-			"JavaHello/spring-boot.nvim",
+			-- "JavaHello/spring-boot.nvim",
 		},
 		keys = {
 			{

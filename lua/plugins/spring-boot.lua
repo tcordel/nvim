@@ -1,16 +1,16 @@
 -- sudo -E nvim /usr/share/nvim/runtime/lua/vim/lsp/inlay_hint.lua +:355
 return {
-	"JavaHello/spring-boot.nvim",
-	dependencies = {
-		-- "mfussenegger/nvim-jdtls",
-		{
-			"williamboman/mason.nvim",
-			opts = function(_, opts)
-				opts.ensure_installed = opts.ensure_installed or {}
-				table.insert(opts.ensure_installed, "spring-boot-tools")
-			end,
-		},
-	},
+-- 	"JavaHello/spring-boot.nvim",
+-- 	dependencies = {
+-- 		-- "mfussenegger/nvim-jdtls",
+-- 		{
+-- 			"williamboman/mason.nvim",
+-- 			opts = function(_, opts)
+-- 				opts.ensure_installed = opts.ensure_installed or {}
+-- 				table.insert(opts.ensure_installed, "spring-boot-tools")
+-- 			end,
+-- 		},
+-- 	},
 	-- ft = "java",
 	-- config = function()
 	-- 	require("spring_boot").setup({
