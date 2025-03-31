@@ -1,11 +1,14 @@
 return {
 	"williamboman/mason.nvim",
 	opts = {
+		PATH="prepend",
 		ensure_installed = {
 			"xmlformatter",
 			"powershell-editor-services",
 			"bash-language-server",
-			"lua-language-server"
+			"lua-language-server",
+			"jdtls",
+			"sonarlint-language-server"
 		},
 		registries = {
 			"github:mason-org/mason-registry",

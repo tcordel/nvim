@@ -7,7 +7,9 @@ return {
 			lua = { "stylua" },
 			markdown = { "prettier" },
 			javascript = { "prettier" },
-			typescript = { "prettier" },
+			javascriptreact= { "prettier" },
+			typescript= { "prettier" },
+			typescriptreact= { "prettier" },
 			xml = { "tidy" },
 		},
 		formatters = {

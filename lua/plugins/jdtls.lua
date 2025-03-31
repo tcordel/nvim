@@ -3,6 +3,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		dependencies = {
 			"folke/which-key.nvim",
+			"williamboman/mason.nvim",
 			-- "JavaHello/spring-boot.nvim",
 		},
 		keys = {
@@ -65,7 +66,7 @@ return {
 				"-Declipse.product=org.eclipse.jdt.ls.core.product",
 				-- '-Dlog.protocol=true',
 				-- '-Dlog.level=ALL',
-				-- '-Xmx6g',
+				'-Xmx16g',
 				"--add-modules=ALL-SYSTEM",
 				"--add-opens",
 				"java.base/java.util=ALL-UNNAMED",
@@ -96,7 +97,10 @@ return {
 							"java.util.List.*",
 							"java.util.Map.*",
 							"java.util.stream.*",
+							"java.util.stream.Stream.*",
 							"java.lang.*",
+							"org.apache.commons.lang3.StringUtils.*",
+							"org.springframework.http.MediaType.*",
 							"org.assertj.core.api.Assertions.*",
 							"java.util.Objects.requireNonNull",
 							"java.util.Objects.requireNonNullElse",

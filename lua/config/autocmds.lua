@@ -13,3 +13,12 @@ vim.api.nvim_create_autocmd("BufRead", {
 	end
 })
 
+
+vim.filetype.add({
+filename = {
+["docker-compose.yml"] = "yaml.docker-compose",
+["docker-compose.yaml"] = "yaml.docker-compose",
+["compose.yml"] = "yaml.docker-compose",
+["compose.yaml"] = "yaml.docker-compose",
+},
+})

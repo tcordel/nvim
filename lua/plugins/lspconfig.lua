@@ -10,10 +10,6 @@ return {
 				dependencies = {
 					{
 						"williamboman/mason.nvim",
-						opts = function(_, opts)
-							opts.ensure_installed = opts.ensure_installed or {}
-							table.insert(opts.ensure_installed, "sonarlint-language-server")
-						end,
 					},
 				},
 			},
@@ -26,6 +22,7 @@ return {
 				vtsls = {},
 				powershell_es = {},
 				bashls = {},
+				lua_ls = {},
 			},
 			setup = {
 				jdtls = function()

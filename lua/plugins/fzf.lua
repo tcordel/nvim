@@ -34,10 +34,7 @@ return {
 		{
 			"<leader>fs",
 			function()
-				require("fzf-lua").lsp_dynamic_workspace_symbols({
-					query = "",
-					sorting_strategy = "ascending",
-				})
+				require("fzf-lua").lsp_workspace_symbols()
 			end,
 			desc = "Search symbol",
 		},
