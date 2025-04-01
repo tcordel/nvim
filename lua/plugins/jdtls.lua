@@ -4,7 +4,7 @@ return {
 		dependencies = {
 			"folke/which-key.nvim",
 			"williamboman/mason.nvim",
-			-- "JavaHello/spring-boot.nvim",
+			"JavaHello/spring-boot.nvim",
 		},
 		keys = {
 			{
@@ -66,7 +66,7 @@ return {
 				"-Declipse.product=org.eclipse.jdt.ls.core.product",
 				-- '-Dlog.protocol=true',
 				-- '-Dlog.level=ALL',
-				'-Xmx16g',
+				"-Xmx8g",
 				"--add-modules=ALL-SYSTEM",
 				"--add-opens",
 				"java.base/java.util=ALL-UNNAMED",
@@ -136,19 +136,38 @@ return {
 
 			opts.jdtls = function(config)
 				config.handlers = {
-					-- ["language/status"] = function(_, result)
-					-- 	-- print(result)
-					-- end,
-					-- ["$/progress"] = function(_, result, ctx)
-					-- disable progress updates.
-					-- end,
+					["language/status"] = function(_, result)
+						-- print(result)
+					end,
+					["$/progress"] = function(_, result, ctx)
+						-- disable progress updates.
+					end,
 				}
-				-- require("spring_boot").setup({
-				-- 	java_cmd = "java",
-				-- 	log_file = os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
-				-- })
-				-- require("spring_boot").init_lsp_commands()
-				-- vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
+
+				-- ls_path = require("mason-registry").get_package("spring-boot-tools"):get_install_path()
+				-- 	.. "/extension/language-server/spring-boot-language-server-1.59.0-SNAPSHOT-exec.jar"
+
+				local ls_path = vim.fn.glob(require("mason-registry").get_package("spring-boot-tools"):get_install_path()
+				.. "/extension/language-server/spring-boot-language-server-*.jar");
+
+				require("spring_boot").setup({
+					jdtls_name = "jdtls",
+					exploded_ls_jar_data = false,
+					server = {
+						cmd = {
+							"java",
+							"-XX:TieredStopAtLevel=1",
+							"-Xmx8G",
+							"-XX:+UseZGC",
+							"-Dsts.lsp.client=vscode",
+							"-Dsts.log.file=" .. os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
+							"-jar",
+							ls_path,
+						},
+					},
+				})
+				require("spring_boot").init_lsp_commands()
+				vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
 				return config
 			end
 			return opts
