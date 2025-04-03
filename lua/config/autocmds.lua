@@ -7,7 +7,7 @@ vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#51B3EC", bold = true })
 vim.api.nvim_set_hl(0, "LineNr", { fg = "white", bold = true })
 vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#51B3EC", bold = true })
 vim.api.nvim_create_autocmd("BufRead", {
-	  pattern = { "*.txt", "*.md", "*.MD" },
+	pattern = { "*.txt", "*.md", "*.MD" },
 	callback = function()
 		vim.opt.spell = true
 	end
@@ -15,10 +15,17 @@ vim.api.nvim_create_autocmd("BufRead", {
 
 
 vim.filetype.add({
-filename = {
-["docker-compose.yml"] = "yaml.docker-compose",
-["docker-compose.yaml"] = "yaml.docker-compose",
-["compose.yml"] = "yaml.docker-compose",
-["compose.yaml"] = "yaml.docker-compose",
-},
+	filename = {
+		["docker-compose.yml"] = "yaml.docker-compose",
+		["docker-compose.yaml"] = "yaml.docker-compose",
+		["compose.yml"] = "yaml.docker-compose",
+		["compose.yaml"] = "yaml.docker-compose",
+	},
 })
+
+vim.lsp.handlers["language/status"] = function(_, result)
+	-- print(result)
+end
+vim.lsp.handlers["$/progress"] = function(_, result, ctx)
+	-- disable progress updates.
+end
