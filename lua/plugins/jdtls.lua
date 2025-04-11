@@ -157,7 +157,7 @@ return {
 						cmd = {
 							"java",
 							"-XX:TieredStopAtLevel=1",
-							"-Xmx8G",
+							"-Xmx4G",
 							"-XX:+UseZGC",
 							"-Dsts.lsp.client=vscode",
 							"-Dsts.log.file=" .. os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",

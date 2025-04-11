@@ -7,9 +7,9 @@ return {
 			lua = { "stylua" },
 			markdown = { "prettier" },
 			javascript = { "prettier" },
-			javascriptreact= { "prettier" },
-			typescript= { "prettier" },
-			typescriptreact= { "prettier" },
+			javascriptreact = { "prettier" },
+			typescript = { "prettier" },
+			typescriptreact = { "prettier" },
 			xml = { "tidy" },
 		},
 		formatters = {
@@ -34,6 +34,10 @@ return {
 				stdin = true,
 			},
 		},
+		default_format_opts = {
+			lsp_format = "prefer",
+			quiet = true,
+		},
 	},
 	init = function()
 		vim.o.formatexpr = "v:lua.require'conform'.format({ async = true, lsp_fallback = true })"
@@ -49,7 +53,7 @@ return {
 					return
 				end
 
-				local hunks = require("gitsigns").get_hunks()
+				local hunks = require("gitsigns").get_hunks(0)
 				if hunks == nil then
 					return
 				end
@@ -90,7 +94,7 @@ return {
 			function()
 				require("conform").format({ async = true, lsp_fallback = true })
 			end,
-			mode = "",
+			mode = { "n", "v" },
 			desc = "Format Full buffer",
 		},
 	},

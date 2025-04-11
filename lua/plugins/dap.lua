@@ -29,7 +29,7 @@ return {
         name = "Java - Remote",
         type = "java",
         request = "attach",
-        hostName = "127.0.0.1",
+        hostName = "192.168.107.128",
 
         projectName = function()
           local co = coroutine.running()
