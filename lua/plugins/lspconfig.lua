@@ -24,6 +24,7 @@ return {
 				powershell_es = {},
 				bashls = {},
 				lua_ls = {},
+				groovyls = {},
 			},
 			setup = {
 				jdtls = function()
