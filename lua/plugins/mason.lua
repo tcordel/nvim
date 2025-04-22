@@ -10,7 +10,8 @@ return {
 			"jdtls",
 			"sonarlint-language-server",
 			"spring-boot-tools",
-			"groovy-language-server"
+			"groovy-language-server",
+			"lemminx"
 		},
 		registries = {
 			"github:mason-org/mason-registry",
