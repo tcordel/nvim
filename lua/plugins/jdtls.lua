@@ -1,3 +1,14 @@
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client and client.name == "jdtls" then
+			local wk = require("which-key")
+			wk.add({
+				{ "<leader>cm", group = "+maven" },
+			})
+		end
+	end,
+})
 return {
 	{
 		"mfussenegger/nvim-jdtls",
@@ -24,12 +35,20 @@ return {
 				desc = "Go to test",
 			},
 			{
-				"<leader>cm",
+				"<leader>cmf",
 				function()
-					require("jdtls").update_project_config()
+					require("jdtls").update_project_config({ select_mode = "prompt" })
 				end,
 				ft = "java",
 				desc = "Updage maven config",
+			},
+			{
+				"<leader>cmb",
+				function()
+					require("jdtls").build_projects({ select_mode = "prompt" })
+				end,
+				ft = "java",
+				desc = "Build project",
 			},
 		},
 
@@ -147,8 +166,10 @@ return {
 				-- ls_path = require("mason-registry").get_package("spring-boot-tools"):get_install_path()
 				-- 	.. "/extension/language-server/spring-boot-language-server-1.59.0-SNAPSHOT-exec.jar"
 
-				local ls_path = vim.fn.glob(require("mason-registry").get_package("spring-boot-tools"):get_install_path()
-				.. "/extension/language-server/spring-boot-language-server-*.jar");
+				local ls_path = vim.fn.glob(
+					require("mason-registry").get_package("spring-boot-tools"):get_install_path()
+						.. "/extension/language-server/spring-boot-language-server-*.jar"
+				)
 
 				require("spring_boot").setup({
 					jdtls_name = "jdtls",
