@@ -35,9 +35,9 @@ return {
 				desc = "Go to test",
 			},
 			{
-				"<leader>cmf",
+				"<leader>cmu",
 				function()
-					require("jdtls").update_project_config({ select_mode = "prompt" })
+					require("jdtls").update_project_config()
 				end,
 				ft = "java",
 				desc = "Updage maven config",

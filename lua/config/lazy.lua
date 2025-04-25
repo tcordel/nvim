@@ -25,7 +25,7 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.sql" },
 		{ import = "lazyvim.plugins.extras.editor.refactoring" },
 		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
-		{ import = "lazyvim.plugins.extras.ai.copilot" },
+		-- { import = "lazyvim.plugins.extras.ai.copilot" },
 		{ import = "lazyvim.plugins.extras.coding.neogen" },
 		-- { import = "lazyvim.plugins.extras.lang.markdown" },
 		-- { import = "lazyvim.plugins.extras.ui.mini-animate" },
