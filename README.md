@@ -5,3 +5,10 @@
 * Python3 dev environment
 * Go dev environment (gitlab integration)
 * [tidy](https://www.html-tidy.org/) (xml formatting)
+
+## disable spring boot and sonarlint
+
+```bash
+export NO_CI=true
+```
+

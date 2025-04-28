@@ -57,11 +57,29 @@ return {
 								"5. Filename without extension: " .. results[5],
 								"6. Extension of the filename: " .. results[6],
 							}
+
 							local resourceIndex = string.find(results[2], "resources/")
+							local index = 7
 							if resourceIndex then
 								local resourceFile = string.sub(results[2], resourceIndex + 10)
 								table.insert(results, resourceFile)
-								table.insert(choices, "7. resourceFile: " .. results[7])
+								table.insert(choices, index .. ". resourceFile: " .. results[index])
+								index = index + 1
+							end
+							if string.match(results[1], ".java$") then
+								local f = io.open(results[1], "r")
+								if f then
+									local packageDeclaration = f:read()
+									if string.match(packageDeclaration, "^package ") then
+										local length = string.len(packageDeclaration)
+										local packagePath = string.sub(packageDeclaration, 9, length - 1)
+										local qualifiedName = packagePath .. "." .. results[5]
+										table.insert(results, qualifiedName)
+										table.insert(choices, index .. ". qualifiedName: " .. results[index])
+										index = index + 1
+									end
+									f:close()
+								end
 							end
 							vim.ui.select(choices, { prompt = "Choose to copy to clipboard:" }, function(choice)
 								if choice then

@@ -1,3 +1,4 @@
+local ci = os.getenv("NO_CI")
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -171,24 +172,26 @@ return {
 						.. "/extension/language-server/spring-boot-language-server-*.jar"
 				)
 
-				require("spring_boot").setup({
-					jdtls_name = "jdtls",
-					exploded_ls_jar_data = false,
-					server = {
-						cmd = {
-							"java",
-							"-XX:TieredStopAtLevel=1",
-							"-Xmx4G",
-							"-XX:+UseZGC",
-							"-Dsts.lsp.client=vscode",
-							"-Dsts.log.file=" .. os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
-							"-jar",
-							ls_path,
+				if ci == nil or ci ~= "true" then
+					require("spring_boot").setup({
+						jdtls_name = "jdtls",
+						exploded_ls_jar_data = false,
+						server = {
+							cmd = {
+								"java",
+								"-XX:TieredStopAtLevel=1",
+								"-Xmx4G",
+								"-XX:+UseZGC",
+								"-Dsts.lsp.client=vscode",
+								"-Dsts.log.file=" .. os.getenv("HOME") .. "/.local/state/nvim/spring-boot.log",
+								"-jar",
+								ls_path,
+							},
 						},
-					},
-				})
-				require("spring_boot").init_lsp_commands()
-				vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
+					})
+					require("spring_boot").init_lsp_commands()
+					vim.list_extend(config.init_options.bundles, require("spring_boot").java_extensions())
+				end
 				return config
 			end
 			return opts

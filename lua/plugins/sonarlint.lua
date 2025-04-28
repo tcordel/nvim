@@ -7,6 +7,8 @@ local filetypes = {
 	"typescript.tsx",
 	"java",
 }
+local ci = os.getenv("NO_CI")
+local enabled = ci == nil or ci ~= "true"
 return {
 	"schrieveslaach/sonarlint",
 	url = "https://gitlab.com/schrieveslaach/sonarlint.nvim",
@@ -16,6 +18,7 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
+	enabled = enabled,
 	config = function()
 		require("sonarlint").setup({
 			server = {
@@ -38,5 +41,5 @@ return {
 			},
 		})
 	end,
-	-- ft = filetypes,
+	ft = filetypes,
 }
