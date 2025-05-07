@@ -172,7 +172,7 @@ return {
 						.. "/extension/language-server/spring-boot-language-server-*.jar"
 				)
 
-				if ci == nil or ci ~= "true" then
+				if vim.g.ci_enabled then
 					require("spring_boot").setup({
 						jdtls_name = "jdtls",
 						exploded_ls_jar_data = false,

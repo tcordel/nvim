@@ -1,6 +1,11 @@
+
+local ci = os.getenv("NO_CI")
+local enabled = ci == nil or ci ~= "true"
+vim.notify("Sonar enabled " .. tostring(enabled), vim.log.levels.WARN)
 return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
+	enabled = vim.g.ci_enabled,
 	version = false, -- Never set this value to "*"! Never!
 	opts = {
 		-- add any opts here

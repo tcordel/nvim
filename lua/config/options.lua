@@ -23,3 +23,7 @@ vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 vim.g.snacks_animate = false
 vim.opt.spelllang={"en_gb","fr"}
 vim.opt.spell = false
+
+
+local ci = os.getenv("NO_CI")
+vim.g.ci_enabled = (ci == nil or ci ~= "true")
