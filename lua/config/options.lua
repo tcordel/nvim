@@ -27,3 +27,4 @@ vim.opt.spell = false
 
 local ci = os.getenv("NO_CI")
 vim.g.ci_enabled = (ci == nil or ci ~= "true")
+vim.notify("LSP extensions enabled " .. tostring(vim.g.ci_enabled), vim.log.levels.INFO)
