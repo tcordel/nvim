@@ -56,6 +56,7 @@ return {
 		ft = { "java" },
 		opts = function(_, opts)
 			-- opts.root_dir = function(bufname)
+			-- 	vim.notify("Entry", vim.log.levels.INFO)
 			--   local path = require("jdtls.path")
 			--   local dirname = vim.fn.fnamemodify(bufname, ":p:h")
 			--   local getparent = function(p)
@@ -74,6 +75,7 @@ return {
 			--     end
 			--     dirname = getparent(dirname)
 			--   end
+			-- 	vim.notify(dirname, vim.log.levels.INFO)
 			--   return dirname
 			-- end
 			opts.cmd = {
@@ -110,6 +112,9 @@ return {
 					references = {
 						includeDecompiledSources = true,
 					},
+					autobuild = {
+						enabled = false,
+					},
 					completion = {
 						favoriteStaticMembers = {
 							"java.util.*",
@@ -136,12 +141,14 @@ return {
 							"sun.*",
 						},
 						importOrder = {
-							"fr",
-							"org",
-							"com",
-							"jakarta",
 							"java",
 							"javax",
+							"org.apache",
+							"org.springframework",
+							"org",
+							"com",
+							"",
+							"#"
 						},
 					},
 					format = {
