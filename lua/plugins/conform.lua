@@ -11,6 +11,7 @@ return {
 			typescript = { "prettier" },
 			typescriptreact = { "prettier" },
 			xml = { "tidy" },
+			json = {"jq"}
 		},
 		formatters = {
 			injected = { options = { ignore_errors = true } },

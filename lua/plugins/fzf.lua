@@ -34,7 +34,7 @@ return {
 		{
 			"<leader>fs",
 			function()
-				require("fzf-lua").lsp_workspace_symbols()
+				require("fzf-lua").lsp_live_workspace_symbols()
 			end,
 			desc = "Search symbol",
 		},

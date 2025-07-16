@@ -1,1 +1,26 @@
-[{"url": "oracle:eai/eai@localhost:1121/XE", "name": "XE-1"}, {"url": "sqlserver://localhost;databaseName=eai;user=eai;password=Antares0;trustServerCertificate=true", "name": "SQL"}, {"url": "postgresql://eai:eai@localhost:5431/eie", "name": "PSQL-1"}, {"url": "postgresql://pod:pod@localhost:5430/pod", "name": "pod"}]
+[
+  {
+    "url": "oracle:eai/eai@localhost:1121/XE",
+    "name": "XE-1"
+  },
+  {
+    "url": "sqlserver://localhost;databaseName=eai;user=eai;password=Antares0;trustServerCertificate=true",
+    "name": "SQL"
+  },
+  {
+    "url": "postgresql://root:password@localhost:5431",
+    "name": "PSQL-1"
+  },
+  {
+    "url": "postgresql://eai:eai@localhost:5431/eie",
+    "name": "PSQL-eie"
+  },
+  {
+    "url": "postgresql://pod:pod@localhost:5430/pod",
+    "name": "pod"
+  },
+  {
+    "url": "postgresql://postgres:Pt12mdp!@192.168.107.131:5432",
+    "name": "VM"
+  }
+]

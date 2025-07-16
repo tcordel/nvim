@@ -3,8 +3,7 @@ return {
 	---@type snacks.Config
 	opts = {
 		bigfile = {
-			line_length = 50000,
-
+			line_length = 500000,
 		},
 	},
 }

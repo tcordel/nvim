@@ -1,0 +1,24 @@
+select calls, total_exec_time, min_exec_time, max_exec_time, query from pg_stat_statements where query not like '%UTILISATEUR%' order by total_exec_time     desc; --where query like '%MESSAGE%';
+
+
+-- select pg_stat_statements_reset();
+
+-- select count(*) from message;
+
+
+-- ALTER SYSTEM set from_collapse_limit = 12;
+-- ALTER SYSTEM set join_collapse_limit = 12;
+--
+-- ALTER SYSTEM SET geqo = on;
+-- ALTER SYSTEM SET geqo_threshold = 12;
+-- ALTER SYSTEM SET from_collapse_limit = 40;
+-- ALTER SYSTEM SET join_collapse_limit = 40;
+
+-- \connect eai;
+-- select count(*) from message;
+--
+-- ALTER TABLE MESSAGE DROP CONSTRAINT MESSAGE_REF_APPLICATION_SRC ;
+-- ALTER TABLE MESSAGE DROP CONSTRAINT MESSAGE_REF_APPLICATION_DST ;
+-- ALTER TABLE MESSAGE DROP CONSTRAINT MESSAGE_REF_POSITION ;
+-- ALTER TABLE MESSAGE DROP CONSTRAINT MESSAGE_REF_TYPEDOCUMENT ;
+-- ALTER TABLE MESSAGE DROP CONSTRAINT MESSAGE_REF_MESSAGE ;
