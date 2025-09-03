@@ -5,6 +5,7 @@
 * Python3 dev environment
 * Go dev environment (gitlab integration)
 * [tidy](https://www.html-tidy.org/) (xml formatting)
+* luarocks
 
 ## disable spring boot and sonarlint
 

@@ -1,4 +1,3 @@
-local ci = os.getenv("NO_CI")
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -102,9 +101,16 @@ return {
 					},
 					maven = {
 						downloadSources = true,
+						updateSnapshots = false
 					},
 					implementationsCodeLens = {
 						enabled = true,
+					},
+					import = {
+						maven = {
+							offline = true
+						}
+
 					},
 					referencesCodeLens = {
 						enabled = true,
@@ -112,9 +118,9 @@ return {
 					references = {
 						includeDecompiledSources = true,
 					},
-					autobuild = {
-						enabled = false,
-					},
+					-- autobuild = {
+					-- 	enabled = false,
+					-- },
 					completion = {
 						favoriteStaticMembers = {
 							"java.util.*",

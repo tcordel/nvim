@@ -24,9 +24,9 @@ vim.filetype.add({
 	},
 })
 
--- vim.lsp.handlers["language/status"] = function(_, result)
--- 	-- print(result)
--- end
--- vim.lsp.handlers["$/progress"] = function(_, result, ctx)
--- 	-- disable progress updates.
--- end
+vim.lsp.handlers["language/status"] = function(_, result)
+	-- print(result)
+end
+vim.lsp.handlers["$/progress"] = function(_, result, ctx)
+	-- disable progress updates.
+end

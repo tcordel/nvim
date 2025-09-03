@@ -1,5 +1,4 @@
 local ci = os.getenv("NO_CI")
-local enabled = ci == nil or ci ~= "true"
 return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
@@ -7,13 +6,25 @@ return {
 	opts = {
 		-- add any opts here
 		-- for example
-		provider = "copilot",
-		auto_suggestions_provider = "copilot",
+		-- provider = "copilot",
+		-- auto_suggestions_provider = "copilot",
+		-- providers = {
+		-- 	copilot = {
+		-- 		endpoint = "https://api.githubcopilot.com",
+		-- 		model = "claude-3.5-sonnet",
+		-- 	},
+		provider = "claude",
+		auto_suggestions_provider = "claude",
 		providers = {
-			copilot = {
-				endpoint = "https://api.githubcopilot.com",
-				model = "claude-3.5-sonnet",
-			},
+			claude = {
+				endpoint = "https://api.anthropic.com",
+				model = "claude-sonnet-4-20250514",
+				timeout = 30000, -- Timeout in milliseconds
+				extra_request_body = {
+					temperature = 0.75,
+					max_tokens = 8192,
+				},
+			}, -- },
 		},
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
