@@ -13,6 +13,7 @@ return {
 				["--no-scrollbar"] = false,
 			},
 			winopts = file_win_opts,
+			{ "default-title" },
 		}
 	end,
 	keys = {
