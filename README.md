@@ -6,6 +6,7 @@
 * Go dev environment (gitlab integration)
 * [tidy](https://www.html-tidy.org/) (xml formatting)
 * luarocks
+* tree sitter cli: npm install tree-sitter-cli
 
 ## disable spring boot and sonarlint
 

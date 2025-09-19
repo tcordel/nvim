@@ -12,7 +12,7 @@ return {
 	url = "https://gitlab.com/schrieveslaach/sonarlint.nvim",
 	dependencies = {
 		{
-			"williamboman/mason.nvim",
+			"mason-org/mason.nvim",
 			"neovim/nvim-lspconfig",
 		},
 	},
