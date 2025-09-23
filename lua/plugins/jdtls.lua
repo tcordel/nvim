@@ -79,9 +79,7 @@ return {
 			-- end
 			opts.cmd = {
 				vim.fn.exepath("jdtls"),
-				"--jvm-arg=-javaagent:"
-					.. require("mason-registry").get_package("jdtls"):get_install_path()
-					.. "/lombok.jar",
+				"--jvm-arg=-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
 				"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 				"-Dosgi.bundles.defaultStartLevel=4",
 				"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -177,13 +175,8 @@ return {
 					end,
 				}
 
-				-- ls_path = require("mason-registry").get_package("spring-boot-tools"):get_install_path()
-				-- 	.. "/extension/language-server/spring-boot-language-server-1.59.0-SNAPSHOT-exec.jar"
 
-				local ls_path = vim.fn.glob(
-					require("mason-registry").get_package("spring-boot-tools"):get_install_path()
-						.. "/extension/language-server/spring-boot-language-server-*.jar"
-				)
+				local ls_path = vim.fn.expand("$MASON/packages/spring-boot-tools/extension/language-server/spring-boot-language-server-*.jar")
 
 				if vim.g.ci_enabled then
 					require("spring_boot").setup({
