@@ -11,7 +11,8 @@ return {
 			"sonarlint-language-server",
 			"spring-boot-tools",
 			"groovy-language-server",
-			"lemminx"
+			"lemminx",
+			"chrome-debug-adapter"
 		},
 		registries = {
 			"github:mason-org/mason-registry",
