@@ -16,8 +16,8 @@
     "name": "PSQL-eie"
   },
   {
-    "url": "postgresql://pod:pod@localhost:5430/pod",
-    "name": "pod"
+    "url": "postgresql://eai:eai@localhost:5432/eie",
+    "name": "PSQL-2"
   },
   {
     "url": "postgresql://postgres:Pt12mdp!@192.168.107.131:5432",
