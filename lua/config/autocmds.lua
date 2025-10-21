@@ -10,9 +10,8 @@ vim.api.nvim_create_autocmd("BufRead", {
 	pattern = { "*.txt", "*.md", "*.MD" },
 	callback = function()
 		vim.opt.spell = true
-	end
+	end,
 })
-
 
 vim.filetype.add({
 	filename = {
@@ -24,6 +23,50 @@ vim.filetype.add({
 	},
 })
 
+local wk = require("which-key")
+wk.add({
+	{
+		"<leader>cD",
+		function()
+			local buffer = vim.api.nvim_get_current_buf()
+			local line, _ = unpack(vim.api.nvim_win_get_cursor(0))
+			local fzf = require("fzf-lua")
+			return fzf.fzf_exec("find . -name '*.pom'", {
+				prompt = "dependencies> ",
+				cwd = "$HOME/.m2/repository/",
+				actions = {
+					["default"] = function(selected, opts)
+						local pom = selected[1]
+						local splitted = {}
+						local size = 0
+						for i in string.gmatch(pom, "([^/]+)") do
+							table.insert(splitted, i)
+							size = size + 1
+						end
+						local version = splitted[size - 1]
+						local artifactId = splitted[size - 2]
+						local groupId = ""
+						for i = 2, (size - 2) do
+							if i > 2 then
+								groupId = groupId .. "."
+							end
+							groupId = groupId .. splitted[i]
+						end
+
+						local dependency = {
+							"		<dependency>",
+							"			<groupId>" .. groupId .. "</groupId>",
+							"			<artifactId>" .. artifactId .. "</artifactId>",
+							"			<version>" .. version .. "</version>",
+							"		</dependency>",
+						}
+						vim.api.nvim_buf_set_lines(buffer, line, line, false, dependency)
+					end,
+				},
+			})
+		end,
+	},
+})
 -- vim.lsp.handlers["language/status"] = function(_, result)
 -- 	-- print(result)
 -- end

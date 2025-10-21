@@ -75,26 +75,28 @@ return {
 			-- 	-- 	vim.notify(dirname, vim.log.levels.INFO)
 			-- 	--   return dirname
 			-- 	-- end
-			-- 	opts.cmd = {
-			-- 		vim.fn.exepath("jdtls"),
-			-- 		"--jvm-arg=-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
-			-- 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
-			-- 		"-Dosgi.bundles.defaultStartLevel=4",
-			-- 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
-			-- 		'-Dlog.protocol=true',
-			-- 		'-Dlog.level=ALL',
-			-- 		-- "jdt.core.sharedIndexLocation=/home/tcordel/.cache/.jdt/index",
-			-- 		"-Xmx8g",
-			-- 		"--add-modules=ALL-SYSTEM",
-			-- 		"--add-opens",
-			-- 		"java.base/java.util=ALL-UNNAMED",
-			-- 		"--add-opens",
-			-- 		"java.base/java.lang=ALL-UNNAMED",
-			-- 	}
+			opts.cmd = {
+				vim.fn.exepath("jdtls"),
+				"--jvm-arg=-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
+				"-Declipse.application=org.eclipse.jdt.ls.core.id1",
+				"-Dosgi.bundles.defaultStartLevel=4",
+				"-Declipse.product=org.eclipse.jdt.ls.core.product",
+				"-Dlog.protocol=true",
+				"-Dlog.level=ALL",
+				-- "-Xmx8g",
+				"-XX:+EnableDynamicAgentLoading",
+				"--add-modules=ALL-SYSTEM",
+				"--add-opens",
+				"java.base/java.util=ALL-UNNAMED",
+				"--add-opens",
+				"java.base/java.lang=ALL-UNNAMED",
+				"--add-opens",
+				"java.xml/com.sun.org.apache.xml.internal.serialize=ALL-UNNAMED",
+			}
 			opts.dap_main = false
 			opts.settings = {
 				java = {
-					-- 			-- home = "/home/share/jdk-25+36",
+					home = "/home/share/jdk-25+36",
 					eclipse = {
 						downloadSources = true,
 					},
@@ -161,7 +163,7 @@ return {
 						},
 					},
 					-- format = {
-						-- enabled = true,
+					-- enabled = true,
 					-- settings = {
 					-- url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
 					-- 		profile = "eno_code_formatter_java",
