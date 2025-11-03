@@ -83,7 +83,7 @@ return {
 				"-Declipse.product=org.eclipse.jdt.ls.core.product",
 				"-Dlog.protocol=true",
 				"-Dlog.level=ALL",
-				-- "-Xmx8g",
+				"-Xmx8g",
 				"-XX:+EnableDynamicAgentLoading",
 				"--add-modules=ALL-SYSTEM",
 				"--add-opens",
