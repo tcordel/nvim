@@ -12,10 +12,11 @@ return {
 			"spring-boot-tools",
 			"groovy-language-server",
 			"lemminx",
-			"chrome-debug-adapter"
+			"chrome-debug-adapter",
+
 		},
 		registries = {
-			-- "github:tcordel/mason-registry",
+			"github:tcordel/mason-registry",
 			"github:mason-org/mason-registry",
 			"github:nvim-java/mason-registry",
 		},
