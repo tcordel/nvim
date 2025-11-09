@@ -1,13 +1,25 @@
 return {
+	-- {
+	-- 	"rcarriga/nvim-dap-ui",
+	-- 	enabled = false,
+	-- },
 	{
-		"rcarriga/nvim-dap-ui",
+		"tcordel/nvim-dap-ui",
+		dependencies = { "nvim-neotest/nvim-nio" },
 		keys = {
 			{
 				"<leader>duu",
 				function()
 					require("dapui").toggle()
 				end,
-				desc = "Toogle UI",
+				desc = "Toogle [U]I",
+			},
+			{
+				"<leader>dr",
+				function()
+					require("dap").restart_frame()
+				end,
+				desc = "[r]estart frame",
 			},
 			{
 				"<leader>dub",
@@ -20,7 +32,16 @@ return {
 						enter = true,
 					})
 				end,
-				desc = "Float breakpoints",
+				desc = "Float [b]reakpoints",
+			},
+
+			{
+				"<leader>de",
+				function()
+					require("dapui").eval()
+				end,
+				desc = "[E]val",
+				mode = { "n", "x" },
 			},
 			{
 				"<leader>dut",
@@ -33,7 +54,7 @@ return {
 						enter = true,
 					})
 				end,
-				desc = "Float Threads",
+				desc = "Float [T]hreads",
 			},
 		},
 		opts = {
@@ -76,6 +97,21 @@ return {
 				},
 			},
 		},
+
+		config = function(_, opts)
+			local dap = require("dap")
+			local dapui = require("dapui")
+			dapui.setup(opts)
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open({})
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close({})
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close({})
+			end
+		end,
 	},
 	{
 		"mfussenegger/nvim-dap",
