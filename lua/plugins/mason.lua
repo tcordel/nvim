@@ -9,7 +9,7 @@ return {
 			"lua-language-server",
 			"jdtls",
 			"sonarlint-language-server",
-			"spring-boot-tools",
+			"vscode-spring-boot-tools",
 			"groovy-language-server",
 			"lemminx",
 			"chrome-debug-adapter",
@@ -18,7 +18,7 @@ return {
 		registries = {
 			"github:tcordel/mason-registry",
 			"github:mason-org/mason-registry",
-			"github:nvim-java/mason-registry",
+			-- "github:nvim-java/mason-registry",
 		},
 	},
 }

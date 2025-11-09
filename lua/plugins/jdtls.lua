@@ -162,13 +162,13 @@ return {
 							"#",
 						},
 					},
-					-- format = {
-					-- enabled = true,
-					-- settings = {
-					-- url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
-					-- 		profile = "eno_code_formatter_java",
-					-- },
-					-- },
+					format = {
+						enabled = true,
+						settings = {
+							url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
+							profile = "eno_code_formatter_java",
+						},
+					},
 				},
 			}
 			--

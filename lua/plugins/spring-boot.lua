@@ -8,7 +8,7 @@ return {
 			"mason-org/mason.nvim",
 			opts = function(_, opts)
 				opts.ensure_installed = opts.ensure_installed or {}
-				table.insert(opts.ensure_installed, "spring-boot-tools")
+				table.insert(opts.ensure_installed, "vscode-spring-boot-tools")
 			end,
 		},
 	},
@@ -16,7 +16,7 @@ return {
 	enabled = vim.g.ci_enabled,
 	config = function()
 		local ls_path = vim.fn.expand(
-			"$MASON/packages/spring-boot-tools/extension/language-server/spring-boot-language-server-*.jar"
+			"$MASON/packages/vscode-spring-boot-tools/extension/language-server/spring-boot-language-server-*.jar"
 		)
 		require("spring_boot").setup({
 			jdtls_name = "jdtls",
