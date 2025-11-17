@@ -14,6 +14,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		dependencies = {
 			"JavaHello/spring-boot.nvim",
+			"tcordel/neo-tree-maven-dependencies.nvim",
 		},
 		-- enabled = false,
 		keys = {
@@ -48,6 +49,13 @@ return {
 				end,
 				ft = "java",
 				desc = "Build project",
+			},
+
+			{
+				"<leader>cmd",
+				"<Cmd>Neotree maven toggle<CR>",
+				ft = "java",
+				desc = "Show project [d]ependencies",
 			},
 		},
 

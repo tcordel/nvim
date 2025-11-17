@@ -7,10 +7,10 @@ return {
 		"MunifTanjim/nui.nvim",
 		"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		"sindrets/diffview.nvim",
-		-- "maven.nvim",
+		"tcordel/neo-tree-maven-dependencies.nvim",
 	},
 	opts = function(_, opts)
-		-- table.insert(opts.sources, "maven")
+		table.insert(opts.sources, "maven")
 		opts.window.mappings = vim.tbl_extend("force", opts.window.mappings, {
 			["U"] = {
 				function(state)
@@ -80,6 +80,12 @@ return {
 				desc = "Yank file...",
 			},
 		})
-		opts.maven = {}
+		opts.maven = {
+			window = {
+				mappings = {
+					["I"] = "invalidate"
+				},
+			},
+		}
 	end,
 }
