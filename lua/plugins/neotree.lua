@@ -11,6 +11,9 @@ return {
 	},
 	opts = function(_, opts)
 		table.insert(opts.sources, "maven")
+
+		opts.filesystem.group_dirs_and_files = true -- when true, empty folders and files will be grouped together
+		opts.filesystem.group_empty_dirs = true -- when true, empty directories will be grouped together
 		opts.window.mappings = vim.tbl_extend("force", opts.window.mappings, {
 			["U"] = {
 				function(state)
@@ -83,7 +86,21 @@ return {
 		opts.maven = {
 			window = {
 				mappings = {
-					["I"] = "invalidate"
+					["I"] = "invalidate",
+				},
+			},
+			group_dirs_and_files = true, -- when true, empty folders and files will be grouped together
+			group_empty_dirs = true, -- when true, empty directories will be grouped together
+			renderers = {
+				directory = {
+					{ "indent" },
+					{ "icon" },
+					{ "name" },
+				},
+				file = {
+					{ "indent" },
+					{ "icon" },
+					{ "name" },
 				},
 			},
 		}

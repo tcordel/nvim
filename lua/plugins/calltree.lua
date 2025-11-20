@@ -25,29 +25,5 @@ return {
 		config = function(_, opts)
 			require("litee.calltree").setup(opts)
 		end,
-		keys = {
-
-			{
-				"gH",
-				function()
-					vim.lsp.buf.incoming_calls()
-				end,
-				desc = "incoming calls",
-			},
-			{
-				"gl",
-				function()
-					vim.lsp.buf.outgoing_calls()
-				end,
-				desc = "outgoing calls",
-			},
-			{
-				"gj",
-				function()
-					require("litee.calltree").expand_calltree()
-				end,
-				desc = "Expand calltree",
-			},
-		},
 	},
 }

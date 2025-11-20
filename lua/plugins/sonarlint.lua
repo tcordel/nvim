@@ -13,8 +13,13 @@ return {
 	dependencies = {
 		{
 			"mason-org/mason.nvim",
-			"neovim/nvim-lspconfig",
+
+			opts = function(_, opts)
+				opts.ensure_installed = opts.ensure_installed or {}
+				table.insert(opts.ensure_installed, "sonarlint-language-server")
+			end,
 		},
+		"neovim/nvim-lspconfig",
 	},
 	enabled = vim.g.ci_enabled,
 	config = function()
@@ -26,17 +31,17 @@ return {
 					"-analyzers",
 					vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
 					vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+					vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjavasymbolicexecution.jar"),
+				},
+				settings = {
+					sonarlint = {
+						rules = {
+							["typescript:S6440"] = { level = "off" },
+						},
+					},
 				},
 			},
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"javascript.jsx",
-				"typescript",
-				"typescriptreact",
-				"typescript.tsx",
-				"java",
-			},
+			filetypes = filetypes,
 		})
 	end,
 	ft = filetypes,
