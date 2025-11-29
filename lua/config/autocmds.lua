@@ -46,7 +46,7 @@ wk.add({
 						local version = splitted[size - 1]
 						local artifactId = splitted[size - 2]
 						local groupId = ""
-						for i = 2, (size - 2) do
+						for i = 2, (size - 3) do
 							if i > 2 then
 								groupId = groupId .. "."
 							end
