@@ -7,13 +7,13 @@ return {
 		"tcordel/nvim-dap-ui",
 		dependencies = { "nvim-neotest/nvim-nio" },
 		keys = {
-			{
-				"<leader>duu",
-				function()
-					require("dapui").toggle()
-				end,
-				desc = "Toogle [U]I",
-			},
+			-- {
+			-- 	"<leader>duu",
+			-- 	function()
+			-- 		require("dapui").toggle()
+			-- 	end,
+			-- 	desc = "Toogle [U]I",
+			-- },
 			{
 				"<leader>dr",
 				function()
@@ -21,19 +21,19 @@ return {
 				end,
 				desc = "[r]estart frame",
 			},
-			{
-				"<leader>dub",
-				function()
-					require("dapui").float_element("breakpoints", {
-						title = "breakpoints",
-						width = 100,
-						height = 40,
-						position = "center",
-						enter = true,
-					})
-				end,
-				desc = "Float [b]reakpoints",
-			},
+			-- {
+			-- 	"<leader>dub",
+			-- 	function()
+			-- 		require("dapui").float_element("breakpoints", {
+			-- 			title = "breakpoints",
+			-- 			width = 100,
+			-- 			height = 40,
+			-- 			position = "center",
+			-- 			enter = true,
+			-- 		})
+			-- 	end,
+			-- 	desc = "Float [b]reakpoints",
+			-- },
 
 			{
 				"<leader>de",
@@ -44,7 +44,7 @@ return {
 				mode = { "n", "x" },
 			},
 			{
-				"<leader>dut",
+				"<leader>dT",
 				function()
 					require("dapui").float_element("stacks", {
 						title = "Threads",
@@ -63,16 +63,16 @@ return {
 					elements = {
 						{
 							id = "scopes",
-							size = 0.75,
+							size = 0.25,
 						},
-						-- {
-						-- 	id = "breakpoints",
-						-- 	size = 0.25,
-						-- },
-						-- {
-						-- 	id = "stacks",
-						-- 	size = 0.25,
-						-- },
+						{
+							id = "breakpoints",
+							size = 0.25,
+						},
+						{
+							id = "stacks",
+							size = 0.25,
+						},
 						{
 							id = "watches",
 							size = 0.25,
@@ -95,6 +95,10 @@ return {
 					position = "bottom",
 					size = 10,
 				},
+			},
+
+			mappings = {
+				watch = "m",
 			},
 		},
 

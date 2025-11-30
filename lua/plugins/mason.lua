@@ -16,8 +16,8 @@ return {
 
 		},
 		registries = {
-			"github:tcordel/mason-registry",
 			"github:mason-org/mason-registry",
+			"github:tcordel/mason-registry",
 			-- "github:nvim-java/mason-registry",
 		},
 	},

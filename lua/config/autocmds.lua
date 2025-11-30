@@ -93,6 +93,19 @@ wk.add({
 vim.lsp.handlers["language/status"] = function(_, result)
 	-- print(result)
 end
--- vim.lsp.handlers["$/progress"] = function(_, result, ctx)
--- 	-- disable progress updates.
--- end
+
+-- -- désactive les diagnostics en mode insertion
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+-- 	callback = function(event)
+-- 		vim.notify("Stopping diagnostics")
+-- 		pcall(vim.diagnostic.disable, event.buf)
+-- 	end,
+-- })
+--
+-- -- réactive à la sortie du mode insertion
+-- vim.api.nvim_create_autocmd("InsertLeave", {
+-- 	callback = function(event)
+-- 		vim.notify("Enabling diagnostics")
+-- 		pcall(vim.diagnostic.enable, false, { bufnr = event.buf })
+-- 	end,
+-- })

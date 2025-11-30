@@ -16,7 +16,7 @@ return {
 			"JavaHello/spring-boot.nvim",
 			"tcordel/neo-tree-maven-dependencies.nvim",
 		},
-		-- enabled = false,
+		enabled = vim.g.lsp_enabled,
 		keys = {
 			{
 				"<leader>ct",
@@ -83,24 +83,24 @@ return {
 			-- 	-- 	vim.notify(dirname, vim.log.levels.INFO)
 			-- 	--   return dirname
 			-- 	-- end
-			opts.cmd = {
-				vim.fn.exepath("jdtls"),
-				"--jvm-arg=-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
-				"-Declipse.application=org.eclipse.jdt.ls.core.id1",
-				"-Dosgi.bundles.defaultStartLevel=4",
-				"-Declipse.product=org.eclipse.jdt.ls.core.product",
-				"-Dlog.protocol=true",
-				"-Dlog.level=ALL",
-				"-Xmx8g",
-				"-XX:+EnableDynamicAgentLoading",
-				"--add-modules=ALL-SYSTEM",
-				"--add-opens",
-				"java.base/java.util=ALL-UNNAMED",
-				"--add-opens",
-				"java.base/java.lang=ALL-UNNAMED",
-				"--add-opens",
-				"java.xml/com.sun.org.apache.xml.internal.serialize=ALL-UNNAMED",
-			}
+			-- opts.cmd = {
+			-- 	vim.fn.exepath("jdtls"),
+			-- 	"--jvm-arg=-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
+			-- 	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
+			-- 	"-Dosgi.bundles.defaultStartLevel=4",
+			-- 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
+			-- 	"-Dlog.protocol=true",
+			-- 	"-Dlog.level=ALL",
+			-- 	"-Xmx8g",
+			-- 	"-XX:+EnableDynamicAgentLoading",
+			-- 	"--add-modules=ALL-SYSTEM",
+			-- 	"--add-opens",
+			-- 	"java.base/java.util=ALL-UNNAMED",
+			-- 	"--add-opens",
+			-- 	"java.base/java.lang=ALL-UNNAMED",
+			-- 	"--add-opens",
+			-- 	"java.xml/com.sun.org.apache.xml.internal.serialize=ALL-UNNAMED",
+			-- }
 			opts.dap_main = false
 			opts.settings = {
 				java = {
@@ -112,17 +112,17 @@ return {
 						downloadSources = true,
 						updateSnapshots = false,
 					},
-					implementationsCodeLens = {
-						enabled = true,
-					},
+					-- implementationsCodeLens = {
+					-- 	enabled = true,
+					-- },
 					import = {
 						maven = {
 							offline = false,
 						},
 					},
-					referencesCodeLens = {
-						enabled = true,
-					},
+					-- referencesCodeLens = {
+					-- 	enabled = true,
+					-- },
 					references = {
 						includeAccessors = true,
 						includeDecompiledSources = true,
@@ -170,13 +170,13 @@ return {
 							"#",
 						},
 					},
-					format = {
-						enabled = true,
-						settings = {
-							url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
-							profile = "eno_code_formatter_java",
-						},
-					},
+					-- format = {
+					-- 	enabled = true,
+					-- 	settings = {
+					-- 		url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
+					-- 		profile = "eno_code_formatter_java",
+					-- 	},
+					-- },
 				},
 			}
 			--
