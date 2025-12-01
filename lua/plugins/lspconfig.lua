@@ -21,7 +21,19 @@ return {
 				vtsls = {},
 				powershell_es = {},
 				bashls = {},
-				lua_ls = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							-- Version of Lua used
+							runtime = { version = "LuaJIT" },
+							-- Get the language server to recognize the `vim` global
+							diagnostics = { globals = { "vim" } },
+							-- Make the server aware of Neovim runtime files
+							-- Do not send telemetry data containing a randomized but unique identifier
+							telemetry = { enable = false },
+						},
+					},
+				},
 				groovyls = {},
 				lemminx = {
 					-- capabilities = {
