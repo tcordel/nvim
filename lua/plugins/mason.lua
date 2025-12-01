@@ -11,7 +11,6 @@ return {
 			"sonarlint-language-server",
 			"vscode-spring-boot-tools",
 			"groovy-language-server",
-			"lemminx",
 			"chrome-debug-adapter",
 
 		},

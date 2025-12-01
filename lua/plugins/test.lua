@@ -93,38 +93,38 @@ return {
 				adapters = {
 					require("neotest-jest")({
                         jestCommand = "yarn test --",
-						jestConfigFile = function()
-							local cwd = getcwd()
-							local jest_config_path = cwd .. package.config:sub(1, 1) .. "package.json"
-
-							-- local package_json_path = cwd .. package.config:sub(1, 1) .. "package.json"
-							-- local package_json_content = vim.fn.readfile(package_json_path)
-							--
-							-- -- Check if the file read is successful
-							-- if next(package_json_content) == nil then
-							-- 	vim.notify("package.json is empty or does not exist")
-							-- 	return nil
-							-- end
-							--
-							-- package_json_content = table.concat(package_json_content, "")
-							-- local decoded_json = vim.fn.json_decode(package_json_content)
-							--
-							-- -- Check if scripts exists and specifically test script
-							-- vim.notify(decoded_json)
-							-- if decoded_json and decoded_json.scripts and decoded_json.scripts.test then
-							-- 	local test_script = decoded_json.scripts.test
-							--
-							-- 	-- Pattern to match the --config argument
-							-- 	local config_arg_pattern = "%-%-config%s([%w%./_-]+)"
-							-- 	local config_path = test_script:match(config_arg_pattern)
-							-- 	vim.notify("Config found" .. config_path)
-							--
-							-- 	return config_path
-							-- else
-							-- 	vim.notify("No test script found in package.json")
-							-- 	return cwd .. "jest.config.ts"
-							-- end
-						end,
+						-- jestConfigFile = function()
+						-- 	local cwd = getcwd()
+						-- 	local jest_config_path = cwd .. package.config:sub(1, 1) .. "package.json"
+						--
+						-- 	local package_json_path = cwd .. package.config:sub(1, 1) .. "package.json"
+						-- 	local package_json_content = vim.fn.readfile(package_json_path)
+						--
+						-- 	-- Check if the file read is successful
+						-- 	if next(package_json_content) == nil then
+						-- 		vim.notify("package.json is empty or does not exist")
+						-- 		return nil
+						-- 	end
+						--
+						-- 	package_json_content = table.concat(package_json_content, "")
+						-- 	local decoded_json = vim.fn.json_decode(package_json_content)
+						--
+						-- 	-- Check if scripts exists and specifically test script
+						-- 	vim.notify(decoded_json)
+						-- 	if decoded_json and decoded_json.scripts and decoded_json.scripts.test then
+						-- 		local test_script = decoded_json.scripts.test
+						--
+						-- 		-- Pattern to match the --config argument
+						-- 		local config_arg_pattern = "%-%-config%s([%w%./_-]+)"
+						-- 		local config_path = test_script:match(config_arg_pattern)
+						-- 		vim.notify("Config found" .. config_path)
+						--
+						-- 		return config_path
+						-- 	else
+						-- 		vim.notify("No test script found in package.json")
+						-- 		return cwd .. "jest.config.ts"
+						-- 	end
+						-- end,
 						env = { CI = true },
 						cwd = getcwd,
 					}),
