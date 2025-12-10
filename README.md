@@ -6,11 +6,20 @@
 * Go dev environment (gitlab integration)
 * [tidy](https://www.html-tidy.org/) (xml formatting)
 * luarocks
-* tree sitter cli: npm install tree-sitter-cli
+* tree sitter cli: `npm install tree-sitter-cli`
+* JDK > 21
 
-## disable spring boot and sonarlint
+## Install
 
 ```bash
-export NO_CI=true
+./ls/load_and_build_all.sh
 ```
 
+## Configuration
+
+```bash
+# Disable sonar and spring-boot-lsp
+export NO_CI=true
+# NO_CI & no lsp
+export NO_LSP=true
+```

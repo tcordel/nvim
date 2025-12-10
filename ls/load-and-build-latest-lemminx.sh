@@ -1,20 +1,27 @@
 #!/usr/bin/env bash
 
 lemminx_dir="$HOME/tools/nvim-extensions/lemminx/"
-lemminx_ls_dir="$lemminx_dir/lemminx-ls"
+lemminx_ls_dir="${lemminx_dir}lemminx-ls"
 if [ -d "$lemminx_ls_dir" ]; then
-    echo "$lemminx_ls_dir already exists"
-    exit 0
+	echo "$lemminx_ls_dir already exists"
+	rm -rf "$lemminx_dir"
 fi
+if [ ! -d "$lemminx_dir" ]; then
+	mkdir -p "$lemminx_dir"
+fi
+cd "$lemminx_dir"
 
-mkdir -p "$lemminx_dir" && cd "$lemminx_dir"
-git clone https://github.com/eclipse-lemminx/lemminx.git lemminx-ls-repo
-
-cd "lemminx-ls-repo" \
-    && ./mvnw -DskipTests package \
-    && cd ./org.eclipse.lemminx/target \
-    && mkdir -p "$lemminx_ls_dir" \
-    && mv org.eclipse.lemminx-uber.jar "$lemminx_ls_dir/"
+if [ ! -d "lemminx-ls-repo" ]; then
+	git clone https://github.com/eclipse-lemminx/lemminx.git lemminx-ls-repo
+fi
+cd "lemminx-ls-repo" &&
+	git reset --hard &&
+	git fetch &&
+	git pull --rebase &&
+	./mvnw -DskipTests package &&
+	cd ./org.eclipse.lemminx/target &&
+	mkdir -p "$lemminx_ls_dir" &&
+	mv org.eclipse.lemminx-uber.jar "$lemminx_ls_dir/"
 
 echo "Lemminx LS successfully installed to $lemminx_ls_dir"
 # # Fetch the latest release JSON from the GitHub API
@@ -27,7 +34,7 @@ echo "Lemminx LS successfully installed to $lemminx_ls_dir"
 # wget -O "${name}.zip" "$zip_url"
 # unzip "${name}.zip"
 # cd "./eclipse-lemminx-lemminx-maven-"* \
-    #     && ./mvnw -DskipTests package \
-    #     && cd ./lemminx-maven/target \
-    #     && unzip lemminx-maven-*-with-dependencies.zip -d lemminx-maven/ \
-    #     && mv lemminx-maven "$lemminx_maven_dir"
+#     && ./mvnw -DskipTests package \
+#     && cd ./lemminx-maven/target \
+#     && unzip lemminx-maven-*-with-dependencies.zip -d lemminx-maven/ \
+#     && mv lemminx-maven "$lemminx_maven_dir"
