@@ -37,6 +37,10 @@ return {
 					sonarlint = {
 						rules = {
 							["typescript:S6440"] = { level = "off" },
+							["java:S112"] = { level = "off" }, -- Generic exception
+							["java:S3252"] = { level = "off" }, -- Prefer static import
+							["java:S3776"] = { level = "off" }, -- Complexity
+							["java:S6541"] = { level = "off" }, -- Brain method
 						},
 					},
 				},
