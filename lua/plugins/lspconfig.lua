@@ -34,6 +34,7 @@ return {
 						},
 					},
 				},
+				gitlab_ci_ls={},
 				groovyls = {},
 				lemminx = {
 					-- capabilities = {

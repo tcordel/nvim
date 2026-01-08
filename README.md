@@ -8,6 +8,7 @@
 * luarocks
 * tree sitter cli: `npm install tree-sitter-cli`
 * JDK > 21
+* [cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html) and libssl-dev
 
 ## Install
 
