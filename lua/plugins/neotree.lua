@@ -12,7 +12,7 @@ return {
 	opts = function(_, opts)
 		table.insert(opts.sources, "maven")
 
-		opts.enable_diagnostics = false
+		-- opts.enable_diagnostics = false
 		opts.default_component_configs.file_size = { enabled = false }
 		opts.default_component_configs.type = { enabled = false }
 		opts.default_component_configs.last_modified = { enabled = false }

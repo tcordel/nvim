@@ -12,6 +12,7 @@ return {
 			"vscode-spring-boot-tools",
 			"groovy-language-server",
 			"chrome-debug-adapter",
+			"vacuum"
 
 		},
 		registries = {

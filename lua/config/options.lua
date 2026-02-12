@@ -3,7 +3,7 @@
 -- Add any additional options here
 --
 -- vim.lsp.set_log_level('debug')
-vim.opt.mouse = ""
+-- vim.opt.mouse = ""
 vim.opt.number = true
 vim.opt.relativenumber = true
 -- vim.opt.title = true

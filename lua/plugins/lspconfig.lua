@@ -19,6 +19,7 @@ return {
 			servers = {
 				jdtls = { enabled = false },
 				vtsls = {},
+				openapi={},
 				powershell_es = {},
 				bashls = {},
 				lua_ls = {

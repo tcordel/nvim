@@ -167,26 +167,26 @@ return {
 			-- 		},
 			-- 	},
 			-- }
-			-- for _, lang in ipairs({
-			-- 	"typescript",
-			-- 	"javascript",
-			-- 	"typescriptreact",
-			-- 	"javascriptreact",
-			-- }) do
-			-- 	dap.configurations[lang] = dap.configurations[lang] or {}
-			-- 	table.insert(dap.configurations[lang], {
-			-- 		name = "Chrome: EIE",
-			-- 		type = "chrome",
-			-- 		request = "attach",
-			-- 		program = "${file}",
-			-- 		cwd = vim.fn.getcwd(),
-			-- 		sourceMaps = true,
-			-- 		protocol = "inspector",
-			-- 		port = 9222,
-			-- 		webRoot = "${workspaceFolder}",
-			-- 		urlFilter="http://localhost:5173/*",
-			-- 	})
-			-- end
+			for _, lang in ipairs({
+				"typescript",
+				"javascript",
+				"typescriptreact",
+				"javascriptreact",
+			}) do
+				dap.configurations[lang] = dap.configurations[lang] or {}
+				table.insert(dap.configurations[lang], {
+					name = "Chrome: EIE",
+					type = "chrome",
+					request = "attach",
+					program = "${file}",
+					cwd = vim.fn.getcwd(),
+					sourceMaps = true,
+					protocol = "inspector",
+					port = 9222,
+					webRoot = "${workspaceFolder}",
+					urlFilter="http://localhost:5173/*",
+				})
+			end
 			dap.configurations.java = {
 				{
 					name = "Java - Remote",

@@ -60,29 +60,29 @@ return {
 		},
 
 		opts = function(_, opts)
-			-- 	-- opts.root_dir = function(bufname)
-			-- 	-- 	vim.notify("Entry", vim.log.levels.INFO)
-			-- 	--   local path = require("jdtls.path")
-			-- 	--   local dirname = vim.fn.fnamemodify(bufname, ":p:h")
-			-- 	--   local getparent = function(p)
-			-- 	--     return vim.fn.fnamemodify(p, ":h")
-			-- 	--   end
-			-- 	--   local pom = nil
-			-- 	--   while getparent(dirname) ~= dirname do
-			-- 	--     if vim.loop.fs_stat(path.join(dirname, "JenkinsFile")) then
-			-- 	--       return dirname
-			-- 	--     end
-			-- 	--
-			-- 	--     if vim.loop.fs_stat(path.join(dirname, "pom.xml")) then
-			-- 	--       pom = dirname
-			-- 	--     elseif pom ~= nil then
-			-- 	--       return pom
-			-- 	--     end
-			-- 	--     dirname = getparent(dirname)
-			-- 	--   end
-			-- 	-- 	vim.notify(dirname, vim.log.levels.INFO)
-			-- 	--   return dirname
-			-- 	-- end
+			-- opts.root_dir = function(bufname)
+			-- 	vim.notify("Entry", vim.log.levels.INFO)
+			--   local path = require("jdtls.path")
+			--   local dirname = vim.fn.fnamemodify(bufname, ":p:h")
+			--   local getparent = function(p)
+			--     return vim.fn.fnamemodify(p, ":h")
+			--   end
+			--   local pom = nil
+			--   while getparent(dirname) ~= dirname do
+			--     if vim.loop.fs_stat(path.join(dirname, "JenkinsFile")) then
+			--       return dirname
+			--     end
+			--
+			--     if vim.loop.fs_stat(path.join(dirname, "pom.xml")) then
+			--       pom = dirname
+			--     elseif pom ~= nil then
+			--       return pom
+			--     end
+			--     dirname = getparent(dirname)
+			--   end
+			-- 	vim.notify(dirname, vim.log.levels.INFO)
+			--   return dirname
+			-- end
 			-- opts.cmd = {
 			-- 	vim.fn.exepath("jdtls"),
 			-- 	"--jvm-arg=-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
@@ -101,6 +101,7 @@ return {
 			-- 	"--add-opens",
 			-- 	"java.xml/com.sun.org.apache.xml.internal.serialize=ALL-UNNAMED",
 			-- }
+			opts.dap = { hotcodereplace = "manual"}
 			opts.dap_main = false
 			opts.settings = {
 				java = {
@@ -112,9 +113,9 @@ return {
 						downloadSources = true,
 						updateSnapshots = false,
 					},
-					-- implementationsCodeLens = {
-					-- 	enabled = true,
-					-- },
+					implementationsCodeLens = {
+						enabled = false,
+					},
 					import = {
 						maven = {
 							offline = false,
@@ -130,9 +131,9 @@ return {
 					signatureHelp = {
 						enabled = false,
 					},
-					autobuild = {
-						enabled = true,
-					},
+					-- autobuild = {
+					-- 	enabled = true,
+					-- },
 					-- maxConcurrentBuilds = 4,
 					completion = {
 						favoriteStaticMembers = {
@@ -215,13 +216,13 @@ return {
 							"#",
 						},
 					},
-					-- format = {
-					-- 	enabled = true,
-					-- 	settings = {
-					-- 		url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
-					-- 		profile = "eno_code_formatter_java",
-					-- 	},
-					-- },
+					format = {
+						enabled = true,
+						settings = {
+							url = os.getenv("HOME") .. ".config/nvim/resources/eno_code_formatter_java.xml",
+							profile = "eno_code_formatter_java",
+						},
+					},
 				},
 			}
 			--
