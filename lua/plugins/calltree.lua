@@ -22,8 +22,9 @@ return {
 			on_open = "panel",
 			map_resize_keys = false,
 		},
-		config = function(_, opts)
-			require("litee.calltree").setup(opts)
+		config = function()
+			require("litee.lib").setup({})
+			require("litee.calltree").setup({})
 		end,
 	},
 }

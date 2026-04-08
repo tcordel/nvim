@@ -13,7 +13,7 @@ return {
 		},
 	},
 	ft = { "java", "yaml", "jproperties" },
-	enabled = vim.g.ci_enabled,
+	-- enabled = vim.g.ci_enabled,
 	config = function()
 		local ls_path = vim.fn.expand(
 			"$MASON/packages/vscode-spring-boot-tools/extension/language-server/spring-boot-language-server-*.jar"

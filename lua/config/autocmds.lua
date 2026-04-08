@@ -53,6 +53,9 @@ wk.add({
 		desc = "Expand calltree",
 	},
 })
+local dap = require("dap")
+
+require("dap").defaults.fallback.terminate_timeout = 2000
 
 vim.lsp.handlers["language/status"] = function(_, result)
 	-- print(result)

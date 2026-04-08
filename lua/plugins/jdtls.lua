@@ -131,9 +131,9 @@ return {
 					signatureHelp = {
 						enabled = false,
 					},
-					-- autobuild = {
-					-- 	enabled = true,
-					-- },
+					autobuild = {
+						enabled = false,
+					},
 					-- maxConcurrentBuilds = 4,
 					completion = {
 						favoriteStaticMembers = {
