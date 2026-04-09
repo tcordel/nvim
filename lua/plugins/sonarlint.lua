@@ -32,6 +32,23 @@ return {
 		-- via change=0 court-circuite aussi le handler save natif de nvim.
 		local group = vim.api.nvim_create_augroup("sonarlint_save_only", { clear = true })
 
+		-- Désactive l'indexation globale du workspace au démarrage :
+		-- `sonarlint/listFilesInFolder` est la requête que le serveur envoie
+		-- au client pour lister récursivement tous les fichiers du workspace.
+		-- Sur un gros projet, cela fige nvim le temps que le filesystem soit
+		-- scanné. On renvoie une liste vide → sonarlint n'analysera que les
+		-- fichiers ouverts via didOpen.
+		-- On pose aussi le handler en global (vim.lsp.handlers) comme
+		-- fallback, au cas où le serveur émettrait la requête avant que
+		-- LspAttach ne fire (client.handlers prend le dessus sinon).
+		local function empty_files(_err, _params, _ctx)
+			return { foundFiles = {} }
+		end
+		vim.lsp.handlers["sonarlint/listFilesInFolder"] = empty_files
+		vim.lsp.handlers["sonarlint/filterOutExcludedFiles"] = function(_err, _params, _ctx)
+			return { fileUris = {} }
+		end
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = group,
 			callback = function(args)
@@ -44,6 +61,12 @@ return {
 					change = 0, -- None
 					save = { includeText = true },
 				}
+				-- Réécrase les handlers que sonarlint.nvim a pu poser sur le
+				-- client pendant son setup.
+				client.handlers["sonarlint/listFilesInFolder"] = empty_files
+				client.handlers["sonarlint/filterOutExcludedFiles"] = function(_err, _params, _ctx)
+					return { fileUris = {} }
+				end
 				if not client.__didchange_patched then
 					client.__didchange_patched = true
 					local original_notify = client.notify
