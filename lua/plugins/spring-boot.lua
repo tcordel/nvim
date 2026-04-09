@@ -32,6 +32,17 @@ return {
 					"-jar",
 					ls_path,
 				},
+				-- Analyse uniquement à la sauvegarde pour éviter les freezes
+				-- sur les gros projets. Spring Boot LS reste utile pour les
+				-- hovers/completions Spring mais n'a pas besoin de ré-analyser
+				-- à chaque frappe.
+				on_init = function(client)
+					client.server_capabilities.textDocumentSync = {
+						openClose = true,
+						change = 0, -- None: plus de didChange envoyé pendant l'édition
+						save = { includeText = true },
+					}
+				end,
 			},
 		})
 		require("spring_boot").init_lsp_commands()

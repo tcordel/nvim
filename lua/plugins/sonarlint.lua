@@ -33,6 +33,17 @@ return {
 					vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
 					vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjavasymbolicexecution.jar"),
 				},
+				-- Analyse uniquement à la sauvegarde pour éviter les freezes
+				-- sur les gros projets Java. Sans ça, chaque frappe envoie un
+				-- textDocument/didChange que sonarjava + symbolic-execution
+				-- ré-analysent en entier.
+				on_init = function(client)
+					client.server_capabilities.textDocumentSync = {
+						openClose = true,
+						change = 0, -- None: plus de didChange envoyé pendant l'édition
+						save = { includeText = true },
+					}
+				end,
 				settings = {
 					sonarlint = {
 						rules = {
