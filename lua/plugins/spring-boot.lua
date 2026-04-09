@@ -18,23 +18,23 @@ return {
 		-- Analyse uniquement à la sauvegarde pour éviter les freezes sur les
 		-- gros projets. Spring Boot LS reste utile pour les hovers/completions
 		-- Spring mais n'a pas besoin de ré-analyser à chaque frappe.
-		-- On intercepte client.notify pour shunter textDocument/didChange avant
-		-- qu'il n'atteigne le serveur.
+		-- On intercepte client.notify pour shunter textDocument/didChange, puis
+		-- on renvoie manuellement didSave sur BufWritePost — car désactiver
+		-- didChange via change=0 court-circuite aussi le handler save natif.
+		local group = vim.api.nvim_create_augroup("spring_boot_save_only", { clear = true })
+
+		local function is_spring_boot(client)
+			return client.name == "spring-boot"
+				or client.name:match("spring")
+				or client.name:match("boot")
+				or client.name == "smartls"
+		end
+
 		vim.api.nvim_create_autocmd("LspAttach", {
+			group = group,
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
-				if not client then
-					return
-				end
-				-- spring-boot.nvim peut nommer le client "spring_boot", "smartls"
-				-- ou équivalent selon la version.
-				if
-					not (
-						client.name:match("spring")
-						or client.name:match("boot")
-						or client.name == "smartls"
-					)
-				then
+				if not client or not is_spring_boot(client) then
 					return
 				end
 				client.server_capabilities.textDocumentSync = {
@@ -51,6 +51,25 @@ return {
 							return true
 						end
 						return original_notify(...)
+					end
+				end
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			group = group,
+			callback = function(args)
+				for _, client in ipairs(vim.lsp.get_clients({ bufnr = args.buf })) do
+					if is_spring_boot(client) then
+						local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
+						local text = table.concat(lines, "\n")
+						if vim.bo[args.buf].eol then
+							text = text .. "\n"
+						end
+						client.notify("textDocument/didSave", {
+							textDocument = { uri = vim.uri_from_bufnr(args.buf) },
+							text = text,
+						})
 					end
 				end
 			end,

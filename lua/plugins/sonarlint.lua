@@ -27,9 +27,13 @@ return {
 		-- gros projets Java. Sans ça, chaque frappe envoie un
 		-- textDocument/didChange que sonarjava + symbolic-execution ré-analysent
 		-- en entier. On intercepte au niveau de client.notify pour shunter la
-		-- notification avant qu'elle n'atteigne le serveur, peu importe ce que
-		-- _changetracking a caché côté nvim.
+		-- notification avant qu'elle n'atteigne le serveur, puis on renvoie
+		-- manuellement un didSave sur BufWritePost — car désactiver didChange
+		-- via change=0 court-circuite aussi le handler save natif de nvim.
+		local group = vim.api.nvim_create_augroup("sonarlint_save_only", { clear = true })
+
 		vim.api.nvim_create_autocmd("LspAttach", {
+			group = group,
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 				if not client or not client.name:match("sonarlint") then
@@ -49,6 +53,25 @@ return {
 							return true
 						end
 						return original_notify(...)
+					end
+				end
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			group = group,
+			callback = function(args)
+				for _, client in ipairs(vim.lsp.get_clients({ bufnr = args.buf })) do
+					if client.name:match("sonarlint") then
+						local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
+						local text = table.concat(lines, "\n")
+						if vim.bo[args.buf].eol then
+							text = text .. "\n"
+						end
+						client.notify("textDocument/didSave", {
+							textDocument = { uri = vim.uri_from_bufnr(args.buf) },
+							text = text,
+						})
 					end
 				end
 			end,
